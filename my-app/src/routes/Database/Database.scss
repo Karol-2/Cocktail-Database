@@ -1,25 +1,12 @@
-@import "./../../styles/variables";
-
 div.mainPage {
   text-align: center;
   padding: 25px;
-  min-width: 100vh;
-
   input {
     padding: 25px;
     border-radius: 25px;
-    border: solid 2px $primary;
     min-width: 400px;
     max-width: 1000px;
-    font-size: 25px;
+    font-size: large;
     margin-bottom: 25px;
-    background-color: white;
-  }
-
-  div.gallery {
-    min-height: 100vh;
-    Card {
-      background-color: white;
-    }
   }
 }
