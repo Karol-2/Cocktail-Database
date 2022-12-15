@@ -1,13 +1,17 @@
+@import "./../../styles/variables";
+
 div.DrinkCard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 500px;
+  width: 400px;
 
   img {
     width: 300px;
     height: fit-content;
+    border-radius: 25px;
+    border: 3px solid $dark;
   }
   p:first-of-type {
     font-weight: bold;
@@ -16,7 +20,16 @@ div.DrinkCard {
 
   p:last-of-type {
     font-style: italic;
+    color: $primary;
   }
+
+  border: 3px solid $darker;
+  border-radius: 25px;
+  background-color: $lighter;
+  padding-top: 25px;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 div.gallery {

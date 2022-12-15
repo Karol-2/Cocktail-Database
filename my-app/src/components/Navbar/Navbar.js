@@ -1,11 +1,15 @@
 import React from "react";
+import "./Navbar.scss";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav>
-      <Link to="/">Cool Logo</Link>
+      <p>
+        <Link to="/">Cool Logo</Link>
+      </p>
       <ul>
+        <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/database">Database</CustomLink>
         <CustomLink to="/stats">Stats</CustomLink>
         <CustomLink to="/login">Login</CustomLink>

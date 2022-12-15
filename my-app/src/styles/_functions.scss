@@ -2,21 +2,5 @@
   padding: 0 15%;
 }
 @mixin restricted_width_smaller() {
-  padding: 0 20%;
-}
-
-@mixin basic_panel() {
-  padding: 25px;
-  margin: 15px;
-  border-radius: 25px;
-  background-color: $primary;
-  color: $lighter;
-}
-
-@mixin user() {
-  padding: 5px;
-  margin: 5px;
-  border-radius: 15px;
-  background-color: $dark;
-  color: $lighter;
+  padding: 0 10%;
 }

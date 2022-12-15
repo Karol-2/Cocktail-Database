@@ -3,6 +3,4 @@
 
 div.page-content {
   @include restricted_width();
-  color: $darker;
-  min-height: 100vh;
 }
