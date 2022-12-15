@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav>
       <p>
-        <Link to="/">Cool Logo</Link>
+        <Link to="/">Cocktail Bar</Link>
       </p>
       <ul>
         <CustomLink to="/">Home</CustomLink>

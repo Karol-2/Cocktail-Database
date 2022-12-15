@@ -7,17 +7,18 @@ const Footer = () => {
       <div className="newsletter">
         <h1>Stay with us!</h1>
         <p>Join over 1 000 000 people who receive our weekly newsletter.</p>
-        <div>
-          <input type="text"></input>
-          <button></button>
+        <div className="e-mail">
+          <input type="text" placeholder="example@page.com"></input>
+          <button>Register</button>
         </div>
       </div>
       <div className="socials">
         <h1>Socials:</h1>
+        <p>Follow us on our social medias!</p>
         <ul>
-          <li>fb</li>
-          <li>insta</li>
-          <li>twitter</li>
+          <li>Facebook: @CocktailBarOfficial</li>
+          <li>Instagram: @CocktailBar</li>
+          <li>Twitter: @CocktailBar</li>
         </ul>
       </div>
     </div>

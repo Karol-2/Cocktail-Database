@@ -3,26 +3,45 @@
 
 nav {
   @include restricted_width();
+
+  * {
+    text-decoration: none;
+    color: $secondary;
+  }
   background-color: $primary;
+  color: $secondary;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
   font-size: 20px;
+
   p {
     position: relative;
     right: 5px;
     cursor: pointer;
+    font-size: 50px;
+    margin: 0 20px;
+    font-style: italic;
   }
   ul {
     display: flex;
     flex-direction: row;
     list-style: none;
     gap: 20px;
-    cursor: pointer;
   }
   li {
     display: inline-block;
-    padding: 0 20px;
+    padding: 5px 25px;
+    cursor: pointer;
+    background-color: $dark;
+    border-radius: 25px;
+
+    &:hover {
+      font-weight: bold;
+    }
+    &:focus-visible {
+      color: red;
+    }
   }
 }
