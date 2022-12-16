@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Outlet } from "react-router-dom";
 import Drinkcard from "./../../components/Drinkcard/Drinkcard";
 import selected_drinks from "./DatabaseSelectedDrinks";
 import "./Database.scss";
