@@ -26,8 +26,7 @@ const selected_drinks = [
   "12091",
   "12784",
   "178363",
-  "11004",
   "17241",
-].sort();
+];
 
 export default selected_drinks;
