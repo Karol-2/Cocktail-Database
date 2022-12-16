@@ -1,11 +1,29 @@
 import React from "react";
-import data from "../../data.json";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Outlet } from "react-router-dom";
 import Drinkcard from "./../../components/Drinkcard/Drinkcard";
+import selected_drinks from "./DatabaseSelectedDrinks";
 import "./Database.scss";
 
 const Database = () => {
   const [searchTerm, SetSearchTerm] = useState("");
+  const [drinkBase, SetDrinkBase] = useState([]);
+  const renderAfterCalled = useRef(false);
+
+  useEffect(() => {
+    if (!renderAfterCalled.current) {
+      selected_drinks.forEach((drink) =>
+        fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink}`
+        )
+          .then((response) => response.json())
+          .then((data) =>
+            SetDrinkBase((old_drinks) => [...old_drinks, data.drinks[0]]).sort()
+          )
+      );
+    }
+    renderAfterCalled.current = true;
+  }, []);
 
   return (
     <div className="mainPage">
@@ -17,7 +35,8 @@ const Database = () => {
         }}
       />
       <div className="gallery">
-        {data
+        {console.log(drinkBase)}
+        {drinkBase
           .filter((value) => {
             if (searchTerm === "") {
               return value;

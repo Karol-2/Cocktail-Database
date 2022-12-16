@@ -8,6 +8,7 @@ import Database from "./routes/Database/Database";
 import Stats from "./routes/Stats/Stats";
 import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
+import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/database" element={<Database />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/drink/:id" element={<DrinkDetails />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
