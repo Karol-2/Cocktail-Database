@@ -1,5 +1,3 @@
-const Sorting = ()=>{
+const Sorting = () => {};
 
-}
-
-export default Sorting
+export default Sorting;

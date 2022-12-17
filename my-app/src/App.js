@@ -25,10 +25,11 @@ const App = () => {
         )
           .then((response) => response.json())
           .then((data) =>
-            SetDrinkBase((old_drinks) => [...old_drinks, data.drinks[0]]).sort()
+            SetDrinkBase((old_drinks) => [...old_drinks, data.drinks[0]])
           )
       );
     }
+    console.log("renderowanie");
     renderAfterCalled.current = true;
   }, []);
 
