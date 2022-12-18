@@ -1,6 +1,12 @@
 import React from "react";
 
-const SliderContent = ({ _id, strDrinkThumb, strDrink, drinkIndex, index }) => {
+const SliderContent = ({
+  idDrink,
+  strDrinkThumb,
+  strDrink,
+  drinkIndex,
+  index,
+}) => {
   let position = "nextSlide";
   if (drinkIndex === index) {
     position = "activeSlide";
@@ -9,7 +15,7 @@ const SliderContent = ({ _id, strDrinkThumb, strDrink, drinkIndex, index }) => {
     position = "lastSlide";
   }
   return (
-    <article className={position} key={_id}>
+    <article className={position} key={idDrink}>
       <img src={strDrinkThumb} alt={strDrink} />
       <h4>{strDrink}</h4>
     </article>
