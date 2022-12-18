@@ -4,7 +4,7 @@ import "./Drinkcard.scss";
 
 const Drinkcard = (props) => {
   return (
-    <div className="DrinkCard">
+    <div className="DrinkCard" id={props.drink.idDrink}>
       <img src={props.drink.strDrinkThumb} alt="a glass with a drink"></img>
       <p>{props.drink.strDrink}</p>
       <p>{props.drink.strAlcoholic}</p>

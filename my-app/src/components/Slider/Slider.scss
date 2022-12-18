@@ -6,7 +6,7 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
-  --fixed-width: 500px;
+  --fixed-width: 620px;
 }
 section {
   .title {
@@ -36,7 +36,7 @@ section {
     display: flex;
     overflow: hidden;
   }
-  img {
+  .person-img {
     border-radius: 25%;
     margin-bottom: 1rem;
     width: 400px;

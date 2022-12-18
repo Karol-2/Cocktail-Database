@@ -11,7 +11,7 @@ import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
 import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
 import { DrinkContext } from "./ContexApi";
-import selected_drinks from "./routes/Database/DatabaseSelectedDrinks";
+import selected_drinks from "./DatabaseSelectedDrinks";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);
@@ -30,12 +30,13 @@ const App = () => {
       );
     }
     console.log("renderowanie");
+    // console.log(drinkBase);
     renderAfterCalled.current = true;
-  }, []);
+  }, [drinkBase]);
 
   return (
-    <div className="app">
-      <DrinkContext.Provider value={drinkBase}>
+    <DrinkContext.Provider value={drinkBase}>
+      <div className="app">
         <Navbar />
         <div className="page-content">
           <Routes>
@@ -48,8 +49,8 @@ const App = () => {
           </Routes>
         </div>
         <Footer />
-      </DrinkContext.Provider>
-    </div>
+      </div>
+    </DrinkContext.Provider>
   );
 };
 

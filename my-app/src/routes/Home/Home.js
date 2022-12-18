@@ -1,12 +1,12 @@
 import React from "react";
+import Slider from "../../components/Slider/Slider";
 
 const Home = () => {
   return (
     <div className="Homepage">
       <h1>Hello, fellow drink-lover!</h1>
       <h3>My brand-new website can help you discover new cocktail recipes.</h3>
-      <h2>Our Top Chocies:</h2>
-      <h2>tu będzie slajder z może 4 zdjęciami</h2>
+      <Slider />
       <p>
         You can find here alcoholic drinks, as well as non-alcoholic drinks.
         Just follow to Database section to find your next favourite drink! You

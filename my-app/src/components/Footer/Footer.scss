@@ -41,6 +41,13 @@ div.footer {
         color: $lighter;
         font-weight: bold;
         cursor: pointer;
+
+        &:hover {
+          color: lighten($color: $lighter, $amount: 100);
+        }
+        &:active {
+          background-color: $darker;
+        }
       }
     }
   }

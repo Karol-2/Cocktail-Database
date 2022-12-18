@@ -1,27 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import SliderContent from "./SliderContent";
+import People from "./People";
+import data from "./data";
 import "./Slider.scss";
-import { DrinkContext } from "../../contexts/DrinkBaseAPI";
-
+import { DrinkContext } from "../../ContexApi";
 function Slider() {
+  const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
   const drinkBase = useContext(DrinkContext);
+  console.log(drinkBase);
 
   useEffect(() => {
-    const lastIndex = 4;
+    const lastIndex = people.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
     if (index > lastIndex) {
       setIndex(0);
     }
-  }, [index]);
+  }, [index, people]);
 
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(slider);
   }, [index]);
 
@@ -32,12 +34,12 @@ function Slider() {
         <div className="underline"></div>
       </div>
       <div className="section-center">
-        {drinkBase.slice(0, 5).map((drink, drinkIndex) => {
+        {people.map((person, personIndex) => {
           return (
-            <SliderContent
-              key={drink._id}
-              {...drink}
-              drinkIndex={drinkIndex}
+            <People
+              key={person.id}
+              {...person}
+              personIndex={personIndex}
               index={index}
             />
           );

@@ -29,7 +29,7 @@ const Database = () => {
               return value;
           })
           .map((val, key) => {
-            return <Drinkcard drink={val} />;
+            return <Drinkcard drink={val} id={key} />;
           })}
       </div>
     </div>

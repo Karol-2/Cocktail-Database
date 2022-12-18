@@ -11,7 +11,7 @@ const DrinkDetails = () => {
   const currentDrink = drinkBase.filter((drink) => drink.idDrink === id)[0];
   const Ingredients = GetIngredients(currentDrink);
 
-  console.log(Ingredients);
+  // console.log(currentDrink);
   return (
     <div className="drink-details">
       <div className="product-info">
