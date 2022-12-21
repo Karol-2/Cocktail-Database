@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "username": "rdestoop0",
+    "password": "ZLWwmxvcBNCH",
+    "email": "rdestoop0@nationalgeographic.com",
+    "first_name": "Rikki",
+    "last_name": "De Stoop"
+  },
+  {
+    "id": 2,
+    "username": "gdany1",
+    "password": "BFc7WNkN",
+    "email": "gdany1@tripadvisor.com",
+    "first_name": "Giorgia",
+    "last_name": "Dany"
+  },
+  {
+    "id": 3,
+    "username": "aalthorpe2",
+    "password": "pMWlmTPY",
+    "email": "aalthorpe2@psu.edu",
+    "first_name": "Albrecht",
+    "last_name": "Althorpe"
+  },
+  {
+    "id": 4,
+    "username": "agateshill3",
+    "password": "O4MD3MvOb",
+    "email": "agateshill3@ihg.com",
+    "first_name": "Alvin",
+    "last_name": "Gateshill"
+  },
+  {
+    "id": 5,
+    "username": "hhaddinton4",
+    "password": "WXi5YF",
+    "email": "hhaddinton4@unc.edu",
+    "first_name": "Helen-elizabeth",
+    "last_name": "Haddinton"
+  },
+  {
+    "id": 6,
+    "username": "awebbe5",
+    "password": "i3teMUT",
+    "email": "awebbe5@utexas.edu",
+    "first_name": "Athene",
+    "last_name": "Webbe"
+  },
+  {
+    "id": 7,
+    "username": "fbrandhardy6",
+    "password": "mZP3lro",
+    "email": "fbrandhardy6@cdc.gov",
+    "first_name": "Fallon",
+    "last_name": "Brand-Hardy"
+  },
+  {
+    "id": 8,
+    "username": "tfirsby7",
+    "password": "j7gNhSYxYs1",
+    "email": "tfirsby7@utexas.edu",
+    "first_name": "Thacher",
+    "last_name": "Firsby"
+  },
+  {
+    "id": 9,
+    "username": "jmccuthais8",
+    "password": "MMc1IZywg",
+    "email": "jmccuthais8@rediff.com",
+    "first_name": "Jase",
+    "last_name": "McCuthais"
+  },
+  {
+    "id": 10,
+    "username": "bokenny9",
+    "password": "pNHvI1o",
+    "email": "bokenny9@spiegel.de",
+    "first_name": "Blinni",
+    "last_name": "O'Kenny"
+  }
+]

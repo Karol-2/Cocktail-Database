@@ -4,4 +4,6 @@
 div.page-content {
   @include restricted_width();
   color: $darker;
+  // height: 100%;
+  // height: 100vh; FULL PAGE HERE
 }

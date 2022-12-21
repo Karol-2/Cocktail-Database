@@ -14,4 +14,8 @@ div.mainPage {
     margin-bottom: 25px;
     background-color: $lighter;
   }
+
+  div.gallery {
+    min-height: 100vh;
+  }
 }
