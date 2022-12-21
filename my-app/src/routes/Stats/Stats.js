@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import BarChart from "../../components/BarChart/BarChart";
+import PieChart from "../../components/PieChart/PieChart";
 import { UserData } from "../../chart-mock-data";
+import { DrinkContext } from "../../ContexApi";
+import DrinkTypeData from "./StatsLogic";
+import Table from "../../components/Table/Table";
 
 const Stats = () => {
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
+  const drinkBase = useContext(DrinkContext);
+  const [alcoholData, setAlcoholData] = useState({
+    labels: DrinkTypeData(drinkBase).map((data) => data.type),
     datasets: [
       {
-        label: "Users Gained",
-        data: UserData.map((data) => data.userGain),
+        label: "Types of drinks",
+        data: DrinkTypeData(drinkBase).map((data) => data.number),
       },
     ],
   });
@@ -26,7 +31,10 @@ const Stats = () => {
         </li>
       </ul>
       <div style={{ width: 600 }}>
-        <BarChart chartData={userData} />
+        <PieChart chartData={alcoholData} />
+      </div>
+      <div>
+        <Table data={DrinkTypeData(drinkBase)} />
       </div>
     </div>
   );
