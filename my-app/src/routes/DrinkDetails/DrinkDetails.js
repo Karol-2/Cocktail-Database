@@ -1,9 +1,12 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
 import { DrinkContext } from "../../ContexApi";
+import Comment from "../../components/Comment/Comment";
+import comments from './../../comments'
+import { comment } from "postcss";
 
 const DrinkDetails = () => {
   const { id } = useParams();
@@ -47,7 +50,15 @@ const DrinkDetails = () => {
       </div>
       <div className="comments">
         <h1>Comments</h1>
+        <ul>
+       {comments.filter((comm)=>comm.drinkID === currentDrink.idDrink).map(comm =>
+         <Comment comment={comm} />
+         
+      )}
+       </ul>
+
       </div>
+      
     </div>
   );
 };
