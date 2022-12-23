@@ -1,0 +1,41 @@
+@import "./../../styles/variables";
+
+div.product-info {
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+  gap: 20px;
+
+  h2 {
+    color: $primary;
+    font-weight: bold;
+  }
+
+  div.photo-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      border: 3px solid $dark;
+      border-radius: 25px;
+      width: 100%;
+      height: auto;
+      max-width: 50vw;
+    }
+    p {
+      color: $dark;
+      margin: 0;
+      font-size: 10px;
+    }
+  }
+
+  div.info-part {
+    max-width: 500px;
+    h1 {
+      font-size: 50px;
+      font-style: italic;
+      color: $darker;
+    }
+  }
+}

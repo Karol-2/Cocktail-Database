@@ -1,0 +1,8 @@
+@import "./../../styles/variables";
+
+table {
+  border: solid 1px $darker;
+  td {
+    border: solid 1px $darker;
+  }
+}
