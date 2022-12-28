@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useContext,useState } from "react";
+import { useContext } from "react";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
 import { DrinkContext } from "../../ContexApi";

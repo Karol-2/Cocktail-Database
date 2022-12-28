@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import BarChart from "../../components/BarChart/BarChart";
 import PieChart from "../../components/PieChart/PieChart";
-import { UserData } from "../../chart-mock-data";
 import { DrinkContext } from "../../ContexApi";
 import { DrinkTypeData, GlassTypeData } from "./StatsLogic";
 import Table from "../../components/Table/Table";
+import './Stats.scss'
 
 const Stats = () => {
   const drinkBase = useContext(DrinkContext);
@@ -22,7 +22,7 @@ const Stats = () => {
     labels: GlassTypeData(drinkBase).map((data) => data.type),
     datasets: [
       {
-        label: "Number of glasses",
+        label: "Number of recepies",
         data: GlassTypeData(drinkBase).map((data) => data.number),
       },
     ],
@@ -38,19 +38,21 @@ const Stats = () => {
           <b>do kazdego z nich tabela</b>
         </li>
       </ul>
-      <div>
+      <div className="chart-page">
         <div style={{ width: 500 }}>
           <PieChart chartData={alcoholData} />
         </div>
         <div>
+          <h1>Drink Type</h1>
           <Table data={DrinkTypeData(drinkBase)} />
         </div>
       </div>
-      <div>
+      <div className="chart-page">
         <div style={{ width: 500 }}>
           <BarChart chartData={glassData} />
         </div>
         <div>
+        <h1>Glass Types</h1>
           <Table data={GlassTypeData(drinkBase)} />
         </div>
       </div>
