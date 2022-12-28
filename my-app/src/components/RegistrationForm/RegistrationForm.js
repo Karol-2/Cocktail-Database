@@ -1,7 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Button } from 'react-bootstrap/';
+import './Registration.scss'
 
-function RegistrationForm() {
+function RegistrationForm(props) {
   return (
     <Formik
       initialValues={{
@@ -32,23 +34,24 @@ function RegistrationForm() {
         setTimeout(() => {
           // submitowanie danych tutaj
           console.log(values);
+          props.submitData(values);
           setSubmitting(false);
         }, 400);
       }}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <Field type="text" name="username" placeholder="Username" />
-          <ErrorMessage name="username" component="div" />
-          <Field type="email" name="email" placeholder="Email" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" placeholder="Password" />
-          <ErrorMessage name="password" component="div" />
-          <Field type="password" name="confirmPassword" placeholder="Confirm Password" />
-          <ErrorMessage name="confirmPassword" component="div" />
-          <button type="submit" disabled={isSubmitting}>
+        <Form className="form">
+          <Field type="text" name="username" placeholder="Username" className="form-input" />
+          <ErrorMessage name="username" component="div" className="error" />
+          <Field type="email" name="email" placeholder="Email" className="form-input" />
+          <ErrorMessage name="email" component="div" className="error"/>
+          <Field type="password" name="password" placeholder="Password"  className="form-input"/>
+          <ErrorMessage name="password" component="div" className="error"/>
+          <Field type="password" name="confirmPassword" placeholder="Confirm Password"  className="form-input"/>
+          <ErrorMessage name="confirmPassword" component="div" className="error" />
+          <Button type="submit" disabled={isSubmitting}>
             Submit
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>
