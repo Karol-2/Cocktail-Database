@@ -1,18 +1,17 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./styles/app.scss";
-import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Home from "./routes/Home/Home";
-import Database from "./routes/Database/Database";
-import Stats from "./routes/Stats/Stats";
-import Login from "./routes/Login/Login";
-import NotFound from "./routes/Notfound/Notfound";
-import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
+import Navbar from "./components/Navbar/Navbar";
 import { DrinkContext } from "./ContexApi";
 import selected_drinks from "./DatabaseSelectedDrinks";
 import AdminPanel from "./routes/AdminPanel/AdminPanel";
+import Database from "./routes/Database/Database";
+import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
+import Home from "./routes/Home/Home";
+import Login from "./routes/Login/Login";
+import NotFound from "./routes/Notfound/Notfound";
+import Stats from "./routes/Stats/Stats";
+import "./styles/app.scss";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);

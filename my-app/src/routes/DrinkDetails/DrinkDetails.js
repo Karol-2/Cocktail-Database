@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router";
-import { useContext } from "react";
+import Comment from "../../components/Comment/Comment";
+import Stars from "../../components/Stars/Stars";
+import { DrinkContext } from "../../ContexApi";
+import comments from "./../../comments";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
-import { DrinkContext } from "../../ContexApi";
-import Comment from "../../components/Comment/Comment";
-import comments from './../../comments'
-
 
 const DrinkDetails = () => {
   const { id } = useParams();
@@ -30,6 +29,7 @@ const DrinkDetails = () => {
           <h3>Category: {currentDrink.strCategory}</h3>
           <h4>{currentDrink.strAlcoholic + " drink"}</h4>
           <h4>Glass: {currentDrink.strGlass}</h4>
+          <Stars />
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (
@@ -50,17 +50,15 @@ const DrinkDetails = () => {
       </div>
       <div className="comments">
         <h1>Comments</h1>
-                
 
         <ul>
-       {comments.filter((comm)=>comm.drinkID === currentDrink.idDrink).map(comm =>
-         <Comment comment={comm} />
-
-      )}
-       </ul>
-
+          {comments
+            .filter((comm) => comm.drinkID === currentDrink.idDrink)
+            .map((comm) => (
+              <Comment comment={comm} />
+            ))}
+        </ul>
       </div>
-      
     </div>
   );
 };
