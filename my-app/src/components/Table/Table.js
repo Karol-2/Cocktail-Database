@@ -1,10 +1,9 @@
 import Row from "./Row";
-import "./Table.scss";
 
 const Table = (props) => {
   const { data } = props;
   return (
-    <table>
+    <table className="table table-striped table-bordered table-hover">
       <tbody>
         {data.map((row) => (
           <Row type={row.type} number={row.number} />
