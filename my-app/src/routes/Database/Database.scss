@@ -8,11 +8,12 @@ div.mainPage {
   input {
     padding: 25px;
     border-radius: 25px;
+    border: solid 2px $primary;
     min-width: 400px;
     max-width: 1000px;
     font-size: 25px;
     margin-bottom: 25px;
-    background-color: $lighter;
+    background-color: white;
   }
 
   div.gallery {

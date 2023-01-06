@@ -1,13 +1,12 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Slider from "../../components/Slider/Slider";
 
 const Home = () => {
   return (
     <div className="Homepage">
-      <h1>Hello, fellow drink-lover!</h1>
-
       <Slider />
+      <h1>Hello, fellow drink-lover!</h1>
       <h2>My brand-new website can help you discover new cocktail recipes.</h2>
       <h3>
         You can find here alcoholic drinks, as well as non-alcoholic drinks.

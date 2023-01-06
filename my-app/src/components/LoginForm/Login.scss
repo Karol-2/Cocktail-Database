@@ -1,0 +1,42 @@
+@import "./../../styles/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark;
+  border-radius: 20px;
+  padding: 15px;
+  .form-input {
+    max-width: fit-content;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 5px;
+    border: 2px solid $primary;
+    margin: 10px;
+  }
+  .error {
+    color: $lighter;
+    font-weight: bold;
+    background-color: $dark;
+  }
+  button {
+    border-radius: 20px;
+    padding: 15px;
+    margin: 5px;
+    font-size: 15px;
+    border: 2px solid $primary;
+    background-color: $primary;
+    color: $lighter;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      color: lighten($color: $lighter, $amount: 100);
+    }
+    &:active {
+      background-color: $darker;
+    }
+  }
+}

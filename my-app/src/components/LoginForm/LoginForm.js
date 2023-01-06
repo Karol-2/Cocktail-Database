@@ -1,14 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "react-bootstrap/";
-import "./Registration.scss";
+import "./Login.scss";
 
 function RegistrationForm(props) {
   return (
     <Formik
       initialValues={{
         username: "",
-        email: "",
         password: "",
         confirmPassword: "",
       }}
@@ -17,16 +16,14 @@ function RegistrationForm(props) {
         if (!values.username) {
           errors.username = "Required";
         }
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
+
         if (!values.password) {
           errors.password = "Required";
         }
+        if (!values.confirmPassword) {
+          errors.confirmPassword = "Required";
+        }
+
         if (values.password !== values.confirmPassword) {
           errors.confirmPassword = "Passwords do not match";
         }
@@ -50,13 +47,7 @@ function RegistrationForm(props) {
             className="form-input"
           />
           <ErrorMessage name="username" component="div" className="error" />
-          <Field
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="form-input"
-          />
-          <ErrorMessage name="email" component="div" className="error" />
+
           <Field
             type="password"
             name="password"
@@ -76,7 +67,7 @@ function RegistrationForm(props) {
             className="error"
           />
           <Button type="submit" disabled={isSubmitting}>
-            Submit
+            Login
           </Button>
         </Form>
       )}

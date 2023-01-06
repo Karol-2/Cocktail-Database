@@ -12,6 +12,7 @@ import NotFound from "./routes/Notfound/Notfound";
 import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
 import { DrinkContext } from "./ContexApi";
 import selected_drinks from "./DatabaseSelectedDrinks";
+import AdminPanel from "./routes/AdminPanel/AdminPanel";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/database" element={<Database />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<AdminPanel />} />
             <Route path="/drink/:id" element={<DrinkDetails />}></Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

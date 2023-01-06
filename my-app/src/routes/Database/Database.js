@@ -21,7 +21,7 @@ const Database = () => {
         }}
       />
       <div className="gallery">
-        <Row xs={2} md={2} className="g-4">
+        <Row xs={1} md={2} mx={2} className="g-4">
           {drinkBase
             .filter((value) => {
               if (searchTerm === "") {

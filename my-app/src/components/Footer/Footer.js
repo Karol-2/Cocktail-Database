@@ -17,19 +17,18 @@ const Footer = () => {
     <div className="footer">
       <div className="newsletter">
         <h1>Stay with us!</h1>
-        <p>Join over 1 000 000 people who receive our weekly newsletter.</p>
+
         <div className="e-mail">
-          <input type="email" placeholder="example@page.com"></input>
-          <button
-            ref={button}
-            onClick={() =>
-              SetShowMessage((prev) => (prev === false ? !prev : prev))
-            }
-          >
-            Register
+          <button ref={button} onClick={() => SetShowMessage((prev) => !prev)}>
+            Click to get an admin page access
           </button>
 
-          {showMessage && <div ref={popup}>Thanks!</div>}
+          {showMessage && (
+            <div ref={popup}>
+              <p>username: admin</p>
+              <p>password:admin</p>{" "}
+            </div>
+          )}
         </div>
       </div>
       <div className="socials">

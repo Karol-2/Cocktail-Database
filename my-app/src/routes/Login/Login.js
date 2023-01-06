@@ -1,36 +1,26 @@
-import React, { useState } from "react";
-import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
+import React from "react";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import "./Login.scss";
 
 const Login = () => {
-  const formularzyk = localStorage.getItem("konto")
-    ? JSON.parse(localStorage.getItem("konto"))
-    : {};
-  const [konto, setKonto] = useState(formularzyk);
-
   function submitData(data) {
-    localStorage.setItem(
-      "konto",
-      JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-        admin: true,
-      })
-    );
-    setKonto(JSON.parse(localStorage.getItem("konto")));
+    if (data.password === "admin" && data.username === "admin")
+      alert("Good data entered");
+    else alert("Bad data!");
   }
 
   return (
-    <div>
+    <div className="LoginPage">
       <div>
         <h1>Login</h1>
-        <input placeholder="username" />
-        <input placeholder="password" />
+        <h5>Please enter our secret passes to login,</h5>
+        <h5> (you will defenitely NOT find it in a footer section!) </h5>
+        <FontAwesomeIcon icon={faCoffee} size="6x" />
       </div>
-      <div>
-        <h1>Register</h1>
-        <RegistrationForm submitData={(x) => submitData(x)} />
-      </div>
+
+      <LoginForm submitData={(x) => submitData(x)} />
     </div>
   );
 };
