@@ -22,3 +22,26 @@ module.exports = {
     return _db;
   },
 };
+
+// dodanie initial data do działania na bazie
+const initialData = require("./initial_data.json");
+
+module.exports.connectToServer(function (err) {
+  if (err) {
+    console.log("Error connecting to MongoDB");
+    process.exit(1);
+  } else {
+    const collection = module.exports.getDb().collection("drinks");
+    collection.deleteMany({}, (err) => {
+      if (err) throw err;
+      console.log("Deleted all previous documents from the drinks");
+      collection.insertMany(initialData, (err, res) => {
+        if (err) throw err;
+        console.log(
+          `Inserted ${res.insertedCount} documents of initial data into the drinks collection`
+        );
+        client.close();
+      });
+    });
+  }
+});
