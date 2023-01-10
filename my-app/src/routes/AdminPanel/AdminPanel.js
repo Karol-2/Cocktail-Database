@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DrinkContext } from "../../ContexApi";
+import TableAdmin from "../../components/TableAdmin/TableAdmin";
 
 const AdminPanel = () => {
-  return <div>adminpanel</div>;
+  const drinkBase = useContext(DrinkContext);
+  console.log(drinkBase);
+  return (
+    <div className="main-page">
+      <h1>Drink in the database: </h1>
+      <TableAdmin data={drinkBase} />
+    </div>
+  );
 };
 
 export default AdminPanel;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -6,11 +6,13 @@ import "./Login.scss";
 
 const Login = () => {
   function submitData(data) {
-    if (data.password === "admin" && data.username === "admin")
-      alert("Good data entered");
-    else alert("Bad data!");
+    if (data.password === "admin" && data.username === "admin") {
+      setIsDataValid(true);
+    } else {
+      alert("Bad data!");
+    }
   }
-
+  const [isDataValid, setIsDataValid] = useState(false);
   return (
     <div className="LoginPage">
       <div>
@@ -21,6 +23,13 @@ const Login = () => {
       </div>
 
       <LoginForm submitData={(x) => submitData(x)} />
+      {isDataValid && (
+        <button
+          onClick={() => (window.location.href = "http://localhost:3000/admin")}
+        >
+          Go to Admin
+        </button>
+      )}
     </div>
   );
 };
