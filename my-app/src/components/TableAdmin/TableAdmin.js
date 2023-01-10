@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
+import "./TableAdmin.scss";
 import { DrinkContext } from "../../ContexApi";
 
-const TableAdmin = () => {
+const TableAdmin = (data) => {
   const drinkBase = useContext(DrinkContext);
   const [tableContent, setTableContent] = useState(drinkBase);
 
@@ -20,38 +21,41 @@ const TableAdmin = () => {
   };
 
   return (
-    <table className="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>ID</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tableContent.map((item, index) => (
-          <tr key={index}>
-            <td>{item.strDrink}</td>
-            <td>{item._id}</td>
-            <td>
-              <button
-                onClick={() => alert("Button clicked!")}
-                className="btn btn-success"
-              >
-                Edit
-              </button>
-
-              <button
-                onClick={() => handleDelete(item._id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-            </td>
+    <div className="main">
+      <table className="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tableContent.map((item, index) => (
+            <tr key={index}>
+              <td>{item.strDrink}</td>
+              <td>{item._id}</td>
+              <td>
+                <button
+                  onClick={() => alert("Button clicked!")}
+                  className="btn btn-success"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="edit-part">Formularz</div>
+    </div>
   );
 };
 

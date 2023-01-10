@@ -4,7 +4,7 @@ import TableAdmin from "../../components/TableAdmin/TableAdmin";
 
 const AdminPanel = () => {
   const drinkBase = useContext(DrinkContext);
-  console.log(drinkBase);
+
   return (
     <div className="main-page">
       <h1>Drink in the database: </h1>

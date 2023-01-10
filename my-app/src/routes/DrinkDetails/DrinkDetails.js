@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import Comment from "../../components/Comment/Comment";
 import Stars from "../../components/Stars/Stars";
 import { DrinkContext } from "../../ContexApi";
-import comments from "./../../comments";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
 
@@ -52,11 +51,11 @@ const DrinkDetails = () => {
         <h1>Comments</h1>
 
         <ul>
-          {comments
+          {/* {comments
             .filter((comm) => comm.drinkID === currentDrink._id)
             .map((comm) => (
               <Comment comment={comm} />
-            ))}
+            ))} */}
         </ul>
       </div>
     </div>
