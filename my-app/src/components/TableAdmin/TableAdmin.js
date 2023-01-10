@@ -54,7 +54,9 @@ const TableAdmin = (data) => {
           ))}
         </tbody>
       </table>
-      <div className="edit-part">Formularz</div>
+      <div className="edit-part">
+        Formularz Dodawania/ edytowania w zalezności od stanu
+      </div>
     </div>
   );
 };

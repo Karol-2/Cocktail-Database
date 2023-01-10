@@ -10,7 +10,9 @@ import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
 import Stats from "./routes/Stats/Stats";
+import TableAdmin from "./components/TableAdmin/TableAdmin";
 import "./styles/app.scss";
+import TableComments from "./components/TableComments/TableComments";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);
@@ -22,8 +24,6 @@ const App = () => {
       .catch((error) => console.error(error))
       .then((data) => SetDrinkBase(data));
 
-    //console.log("renderowanie");
-    //console.log(drinkBase);
     renderAfterCalled.current = true;
   }, []);
 
@@ -37,8 +37,12 @@ const App = () => {
             <Route path="/database" element={<Database />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<AdminPanel />} />
+
             <Route path="/drink/:id" element={<DrinkDetails />}></Route>
+            <Route path="/admin" element={<AdminPanel />}>
+              <Route path="/admin/comments" element={<TableComments />} />
+              <Route path="/admin/database" element={<TableAdmin />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

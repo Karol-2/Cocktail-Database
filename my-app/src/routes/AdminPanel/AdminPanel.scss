@@ -1,0 +1,8 @@
+.main-page {
+  min-height: 100vh;
+  .panels {
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+  }
+}

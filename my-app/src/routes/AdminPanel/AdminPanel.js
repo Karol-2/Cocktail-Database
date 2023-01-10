@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import { DrinkContext } from "../../ContexApi";
-import TableAdmin from "../../components/TableAdmin/TableAdmin";
+import { Link, Outlet } from "react-router-dom";
+import "./AdminPanel.scss";
 
 const AdminPanel = () => {
   const drinkBase = useContext(DrinkContext);
 
   return (
     <div className="main-page">
-      <h1>Drink in the database: </h1>
-      <TableAdmin data={drinkBase} />
+      <div className="panels">
+        <Link to="/admin/comments">COMMENTS PANEL</Link>
+        <Link to="/admin/database">DATABASE PANEL</Link>
+      </div>
+      <Outlet />
     </div>
   );
 };
