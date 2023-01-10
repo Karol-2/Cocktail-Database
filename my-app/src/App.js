@@ -22,8 +22,8 @@ const App = () => {
       .catch((error) => console.error(error))
       .then((data) => SetDrinkBase(data));
 
-    console.log("renderowanie");
-    console.log(drinkBase);
+    //console.log("renderowanie");
+    //console.log(drinkBase);
     renderAfterCalled.current = true;
   }, []);
 
