@@ -21,6 +21,24 @@ recordRoutes.route("/drinks").get((req, res) => {
     });
 });
 
+// recordRoutes.route("/drinks", { method: "POST" }).post((req, res) => {
+//   let db_connect = dbo.getDb("coctail_database");
+
+//   db_connect
+//     .collection("drinks")
+//     .find({})
+//     .toArray((err, docs) => {
+//       if (err) {
+//         console.error(err);
+//         res.status(500).send({
+//           error: "Wystąpił błąd podczas pobierania dokumentów z bazy danych.",
+//         });
+//       } else {
+//         res.status(200).json(docs);
+//       }
+//     });
+// });
+
 recordRoutes.route("/drinks/add").post(function (req, response) {
   let db_connect = dbo.getDb("coctail_database");
 

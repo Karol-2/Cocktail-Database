@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import { DrinkContext } from "./ContexApi";
-import selected_drinks from "./DatabaseSelectedDrinks";
 import AdminPanel from "./routes/AdminPanel/AdminPanel";
 import Database from "./routes/Database/Database";
 import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
@@ -18,21 +17,15 @@ const App = () => {
   const renderAfterCalled = useRef(false);
 
   useEffect(() => {
-    if (!renderAfterCalled.current) {
-      selected_drinks.forEach((drink) =>
-        fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink}`
-        )
-          .then((response) => response.json())
-          .then((data) =>
-            SetDrinkBase((old_drinks) => [...old_drinks, data.drinks[0]])
-          )
-      );
-    }
+    fetch(`http://localhost:5000/drinks`)
+      .then((response) => response.json())
+      .catch((error) => console.error(error))
+      .then((data) => SetDrinkBase(data));
+
     console.log("renderowanie");
-    // console.log(drinkBase);
+    console.log(drinkBase);
     renderAfterCalled.current = true;
-  }, [drinkBase]);
+  }, []);
 
   return (
     <DrinkContext.Provider value={drinkBase}>

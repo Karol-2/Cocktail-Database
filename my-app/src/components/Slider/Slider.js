@@ -36,7 +36,7 @@ function Slider() {
         {drinkBase.slice(0, 5).map((drink, drinkIndex) => {
           return (
             <SliderContent
-              key={drink.idDrink}
+              key={drink._id}
               {...drink}
               drinkIndex={drinkIndex}
               index={index}

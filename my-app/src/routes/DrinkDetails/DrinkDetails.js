@@ -10,7 +10,7 @@ import GetIngredients from "./DrinkDetailsLogic";
 const DrinkDetails = () => {
   const { id } = useParams();
   const drinkBase = useContext(DrinkContext);
-  const currentDrink = drinkBase.filter((drink) => drink.idDrink === id)[0];
+  const currentDrink = drinkBase.filter((drink) => drink._id === id)[0];
   const Ingredients = GetIngredients(currentDrink);
 
   // console.log(currentDrink);
@@ -53,7 +53,7 @@ const DrinkDetails = () => {
 
         <ul>
           {comments
-            .filter((comm) => comm.drinkID === currentDrink.idDrink)
+            .filter((comm) => comm.drinkID === currentDrink._id)
             .map((comm) => (
               <Comment comment={comm} />
             ))}

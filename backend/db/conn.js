@@ -40,7 +40,6 @@ module.exports.connectToServer(function (err) {
         console.log(
           `Inserted ${res.insertedCount} documents of initial data into the drinks collection`
         );
-        client.close();
       });
     });
   }
