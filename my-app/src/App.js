@@ -14,6 +14,7 @@ import TableAdmin from "./components/TableAdmin/TableAdmin";
 import "./styles/app.scss";
 import TableComments from "./components/TableComments/TableComments";
 import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
+import DrinkEditForm from "./components/DrinkEditForm/DrinkEditForm";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/admin/comments" element={<TableComments />} />
               <Route path="/admin/database" element={<TableAdmin />} />
               <Route path="/admin/database-add" element={<DrinkAddForm />} />
+              <Route path="/admin/database-edit" element={<DrinkEditForm />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -26,7 +26,7 @@ const TableAdmin = (data) => {
           <tr>
             <th>Name</th>
             <th>ID</th>
-            <th>Actions</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -35,13 +35,6 @@ const TableAdmin = (data) => {
               <td>{item.strDrink}</td>
               <td>{item._id}</td>
               <td>
-                <button
-                  onClick={() => alert("Button clicked!")}
-                  className="btn btn-success"
-                >
-                  Edit
-                </button>
-
                 <button
                   onClick={() => handleDelete(item._id)}
                   className="btn btn-danger"

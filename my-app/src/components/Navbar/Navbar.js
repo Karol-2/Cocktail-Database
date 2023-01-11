@@ -6,13 +6,23 @@ const Navbar = () => {
   return (
     <nav>
       <p>
-        <Link to="/">Cocktail Bar</Link>
+        <Link to="/" className="custom-link">
+          Cocktail Bar
+        </Link>
       </p>
       <ul>
-        <CustomLink to="/">Home</CustomLink>
-        <CustomLink to="/database">Database</CustomLink>
-        <CustomLink to="/stats">Stats</CustomLink>
-        <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/" className="custom-link">
+          Home
+        </CustomLink>
+        <CustomLink to="/database" className="custom-link">
+          Database
+        </CustomLink>
+        <CustomLink to="/stats" className="custom-link">
+          Stats
+        </CustomLink>
+        <CustomLink to="/login" className="custom-link">
+          Login
+        </CustomLink>
       </ul>
     </nav>
   );
