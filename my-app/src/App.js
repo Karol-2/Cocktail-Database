@@ -13,6 +13,7 @@ import Stats from "./routes/Stats/Stats";
 import TableAdmin from "./components/TableAdmin/TableAdmin";
 import "./styles/app.scss";
 import TableComments from "./components/TableComments/TableComments";
+import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState([]);
@@ -25,7 +26,7 @@ const App = () => {
       .then((data) => SetDrinkBase(data));
 
     renderAfterCalled.current = true;
-  }, []);
+  });
 
   return (
     <DrinkContext.Provider value={drinkBase}>
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/admin" element={<AdminPanel />}>
               <Route path="/admin/comments" element={<TableComments />} />
               <Route path="/admin/database" element={<TableAdmin />} />
+              <Route path="/admin/database-add" element={<DrinkAddForm />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

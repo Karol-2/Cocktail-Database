@@ -11,6 +11,7 @@ const AdminPanel = () => {
       <div className="panels">
         <Link to="/admin/comments">COMMENTS PANEL</Link>
         <Link to="/admin/database">DATABASE PANEL</Link>
+        <Link to="/admin/database-add">ADD DRINK</Link>
       </div>
       <Outlet />
     </div>

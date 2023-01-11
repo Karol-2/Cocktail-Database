@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./TableAdmin.scss";
 import { DrinkContext } from "../../ContexApi";
-
 const TableAdmin = (data) => {
   const drinkBase = useContext(DrinkContext);
   const [tableContent, setTableContent] = useState(drinkBase);
@@ -54,9 +53,6 @@ const TableAdmin = (data) => {
           ))}
         </tbody>
       </table>
-      <div className="edit-part">
-        Formularz Dodawania/ edytowania w zalezności od stanu
-      </div>
     </div>
   );
 };
