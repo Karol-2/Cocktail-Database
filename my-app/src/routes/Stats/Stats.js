@@ -4,7 +4,7 @@ import PieChart from "../../components/PieChart/PieChart";
 import { DrinkContext } from "../../ContexApi";
 import { DrinkTypeData, GlassTypeData } from "./StatsLogic";
 import Table from "../../components/Table/Table";
-import './Stats.scss'
+import "./Stats.scss";
 
 const Stats = () => {
   const drinkBase = useContext(DrinkContext);
@@ -34,6 +34,8 @@ const Stats = () => {
       <ul>
         <li>najpopularniejszy składnik</li>
         <li>najbardziej komentowane drinki</li>
+        <li>najczęściej komentujący użytkownicy</li>
+        <li>top 10 najwyższych ocen</li>
         <li>
           <b>do kazdego z nich tabela</b>
         </li>
@@ -52,7 +54,7 @@ const Stats = () => {
           <BarChart chartData={glassData} />
         </div>
         <div>
-        <h1>Glass Types</h1>
+          <h1>Glass Types</h1>
           <Table data={GlassTypeData(drinkBase)} />
         </div>
       </div>
