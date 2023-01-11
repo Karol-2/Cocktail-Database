@@ -11,6 +11,7 @@ recordRoutes.route("/drinks").get((req, res) => {
   db_connect
     .collection("drinks")
     .find({})
+    .sort({ strDrink: 1 })
     .toArray((err, docs) => {
       if (err) {
         console.error(err);
@@ -19,7 +20,6 @@ recordRoutes.route("/drinks").get((req, res) => {
             "An error occurred while fetching documents from the database.",
         });
       } else {
-        console.log("Displayed whole database");
         res.send(docs);
       }
     });
