@@ -1,15 +1,13 @@
 import React from "react";
-import './Comment.scss'
+import "./Comment.scss";
 
 const Comment = (comment) => {
-    console.log(comment.comment.id)
-    return (
-        <div id={comment.comment.id} className="comment">
-        <h1>{comment.comment.name}</h1>
-        <h3>{comment.comment.content}</h3>
-        </div>
-    )
-
-}
+  return (
+    <div id={comment.comment.id} className="comment">
+      <h1>{comment.comment.name}</h1>
+      <h2>{comment.comment.comment}</h2>
+    </div>
+  );
+};
 
 export default Comment;

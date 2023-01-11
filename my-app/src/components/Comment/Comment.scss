@@ -1,10 +1,11 @@
-@import './../../styles/variables';
-div.comment{
-    background-color: $darker;
-    padding:20px;
-    border-radius: 25px;
-    h1{
-        color:$primary;
-    }
-    color:$lighter;
+@import "./../../styles/variables";
+div.comment {
+  background-color: $darker;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 20px;
+  h1 {
+    color: $primary;
+  }
+  color: $lighter;
 }

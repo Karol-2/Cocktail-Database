@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Comment from "../../components/Comment/Comment";
+import CommentForm from "../../components/CommentForm.js/CommentForm";
 import Stars from "../../components/Stars/Stars";
 import { DrinkContext } from "../../ContexApi";
 import "./DrinkDetails.scss";
@@ -8,11 +9,20 @@ import GetIngredients from "./DrinkDetailsLogic";
 
 const DrinkDetails = () => {
   const { id } = useParams();
+  const [comments, setComment] = useState([]);
+  const [showComments, setShowComments] = useState(false);
   const drinkBase = useContext(DrinkContext);
   const currentDrink = drinkBase.filter((drink) => drink._id === id)[0];
   const Ingredients = GetIngredients(currentDrink);
 
-  // console.log(currentDrink);
+  useEffect(() => {
+    fetch(`http://localhost:5000/comments/${id}`)
+      .then((response) => response.json())
+      .catch((error) => console.error(error))
+      .then((data) => setComment(data))
+      .then(() => setShowComments(true));
+  });
+
   return (
     <div className="drink-details">
       <div className="product-info">
@@ -47,15 +57,14 @@ const DrinkDetails = () => {
           </ol>
         </div>
       </div>
+      <h3>Leave a comment!</h3>
+      <CommentForm drinkid={id} />
       <div className="comments">
-        <h1>Comments</h1>
+        <h2>Comments</h2>
 
         <ul>
-          {/* {comments
-            .filter((comm) => comm.drinkID === currentDrink._id)
-            .map((comm) => (
-              <Comment comment={comm} />
-            ))} */}
+          {showComments &&
+            comments.Comments.map((comm) => <Comment comment={comm} />)}
         </ul>
       </div>
     </div>
