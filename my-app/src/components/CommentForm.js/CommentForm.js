@@ -1,10 +1,12 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import useId from "react-use-uuid";
 
 const CommentForm = ({ drinkid }) => {
-  const id = useId();
+  function randomId() {
+    return Math.random().toString(36).substr(2, 9);
+  }
   const handleSubmit = (values, { resetForm }) => {
+    values.id = randomId();
     fetch("http://localhost:5000/comment/add", {
       method: "PATCH",
       headers: {
@@ -29,7 +31,7 @@ const CommentForm = ({ drinkid }) => {
   };
   return (
     <Formik
-      initialValues={{ name: "", comment: "", id: id, drinkId: drinkid }}
+      initialValues={{ name: "", comment: "", drinkId: drinkid }}
       validate={validate}
       onSubmit={handleSubmit}
     >
