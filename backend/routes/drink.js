@@ -123,13 +123,13 @@ recordRoutes.route("/comments").get(function (req, response) {
     .aggregate([
       { $unwind: "$Comments" },
       { $sort: { strDrink: 1, "Comments.id": 1 } },
-      { $project: { _id: 0, strDrink: 1, Comments: 1 } },
+      { $project: { _id: 1, strDrink: 1, Comments: 1 } },
     ])
     .toArray((err, res) => {
       if (err) {
         console.error(err);
         response.status(500).send({
-          error: "Wystąpił błąd podczas agregowania danych.",
+          error: "Error during aggregation occured!.",
         });
       } else {
         response.json(res);
@@ -137,12 +137,12 @@ recordRoutes.route("/comments").get(function (req, response) {
     });
 });
 
-recordRoutes.route("/comments/:strDrink/:id").put(function (req, res) {
+recordRoutes.route("/comments/:drinkId/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("coctail_database");
   db_connect
     .collection("drinks")
     .updateOne(
-      { strDrink: req.params.strDrink },
+      { _id: ObjectId(req.params.drinkId) },
       { $pull: { Comments: { id: req.params.id } } },
       function (err, obj) {
         if (err) throw err;
@@ -150,5 +150,153 @@ recordRoutes.route("/comments/:strDrink/:id").put(function (req, res) {
         res.json(obj);
       }
     );
+});
+
+// ------------------------------------------------
+recordRoutes.route("/stats/glass").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      {
+        $group: {
+          _id: "$strGlass",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $project: {
+          _id: 0,
+          type: "$_id",
+          number: "$count",
+        },
+      },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Error during aggregation.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
+});
+
+recordRoutes.route("/stats/alco").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      {
+        $group: {
+          _id: "$strAlcoholic",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $project: {
+          _id: 0,
+          type: "$_id",
+          number: "$count",
+        },
+      },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Error during aggregation.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
+});
+recordRoutes.route("/stats/users").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      {
+        $unwind: "$Comments",
+      },
+      {
+        $group: {
+          _id: "$Comments.name",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $project: {
+          _id: 0,
+          user: "$_id",
+          posts: "$count",
+        },
+      },
+      {
+        $limit: 10,
+      },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Error during aggregation.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
+});
+recordRoutes.route("/stats/commented").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      {
+        $group: {
+          _id: "$strDrink",
+          count: { $sum: { $size: "$Comments" } },
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $limit: 10,
+      },
+      {
+        $project: {
+          _id: 0,
+          drink: "$_id",
+          comments: "$count",
+        },
+      },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Error during aggregation.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
 });
 module.exports = recordRoutes;
