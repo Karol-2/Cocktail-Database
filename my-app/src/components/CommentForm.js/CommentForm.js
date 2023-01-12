@@ -1,10 +1,8 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import randomId from "../../helper/randomId";
 
 const CommentForm = ({ drinkid }) => {
-  function randomId() {
-    return Math.random().toString(36).substr(2, 9);
-  }
   const handleSubmit = (values, { resetForm }) => {
     values.id = randomId();
     fetch("http://localhost:5000/comment/add", {

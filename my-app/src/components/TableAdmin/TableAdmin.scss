@@ -1,7 +1,5 @@
 .main {
   display: flex;
-
-  .edit-part {
-    width: 50%;
-  }
+  justify-content: center;
+  align-content: center;
 }
