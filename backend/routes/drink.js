@@ -115,4 +115,45 @@ recordRoutes.route("/comments/:id").get(function (req, res) {
     );
 });
 
+// recordRoutes.route("/comments/all").get(function (req, response) {
+//   let db_connect = dbo.getDb("coctail_database");
+//   db_connect
+//     .collection("drinks")
+//     .aggregate([
+//       { $unwind: "$Comments" },
+//       { $sort: { strDrink: 1, "Comments.id": 1 } },
+//       { $project: { _id: 0, Comments: 1, strDrink: 1 } },
+//     ])
+//     .toArray((err, res) => {
+//       if (err) {
+//         console.error(err);
+//         response.status(500).send({
+//           error: "Wystąpił błąd podczas agregowania danych.",
+//         });
+//       } else {
+//         response.json(res);
+//       }
+//     });
+// });
+recordRoutes.route("/comments").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      { $unwind: "$Comments" },
+      { $sort: { strDrink: 1, "Comments.id": 1 } },
+      { $project: { _id: 0, strDrink: 1, Comments: 1 } },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Wystąpił błąd podczas agregowania danych.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
+});
 module.exports = recordRoutes;
