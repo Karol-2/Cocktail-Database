@@ -14,6 +14,11 @@ const DrinkDetails = () => {
   const drinkBase = useContext(DrinkContext);
   const currentDrink = drinkBase.filter((drink) => drink._id === id)[0];
   const Ingredients = GetIngredients(currentDrink);
+  const average =
+    currentDrink.Reviews.map((el) => parseInt(el)).reduce(
+      (acc, val) => acc + val,
+      0
+    ) / currentDrink.Reviews.length;
 
   useEffect(() => {
     fetch(`http://localhost:5000/comments/${id}`)
@@ -22,7 +27,7 @@ const DrinkDetails = () => {
       .then((data) => setComment(data))
       .then(() => setShowComments(true));
   });
-
+  console.log(currentDrink.Reviews);
   return (
     <div className="drink-details">
       <div className="product-info">
@@ -38,7 +43,7 @@ const DrinkDetails = () => {
           <h3>Category: {currentDrink.strCategory}</h3>
           <h4>{currentDrink.strAlcoholic + " drink"}</h4>
           <h4>Glass: {currentDrink.strGlass}</h4>
-          <Stars />
+          <Stars averageRating={average} />
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (

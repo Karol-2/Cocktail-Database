@@ -6,7 +6,6 @@ function AddFromFile() {
 
   const sendData = (data) => {
     data.forEach((item) => {
-      console.log(item);
       fetch("http://localhost:5000/drinks/add", {
         method: "POST",
         headers: {
@@ -16,8 +15,9 @@ function AddFromFile() {
       })
         .then((res) => res.json())
         .then((response) => console.log(response))
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => alert("Error:", error));
     });
+    alert("File's content added!");
   };
 
   const handleFileSelect = (e) => {
@@ -41,10 +41,11 @@ function AddFromFile() {
         type="file"
         onChange={handleFileSelect}
         ref={(ref) => setFileInput(ref)}
+        class="form-control"
       />
 
       <button className="btn btn-danger" onClick={handleClear}>
-        Add
+        Add via file
       </button>
     </div>
   );
