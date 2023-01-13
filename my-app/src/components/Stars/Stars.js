@@ -7,13 +7,10 @@ const reducer = (state, action) => {
         method: "POST",
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        // .then((data) => console.log(data))
         .catch((err) => console.log(err));
       return { rating: action.rating };
     case "EVERY_OTHER_CLICK":
-      console.log(
-        `http://localhost:5000/reviews/${action.id}/${action.oldrating}/${action.rating}`
-      );
       fetch(
         `http://localhost:5000/reviews/${action.id}/${action.oldrating}/${action.rating}`,
         {
@@ -21,7 +18,7 @@ const reducer = (state, action) => {
         }
       )
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        // .then((data) => console.log(data))
         .catch((err) => console.log(err));
       return { ...state, rating: action.rating };
     default:
@@ -35,9 +32,6 @@ const Stars = ({ averageRating, id, lastElement }) => {
   const [isFirstClick, setClick] = useState(true);
 
   function handleClick(newRating) {
-    // setRating(newRating);
-    // alert(`Zaznaczono ${newRating} gwiazdkę`);
-
     if (isFirstClick) {
       dispatch({ type: "FIRST_CLICK", rating: newRating, id: id });
       setClick(false);
@@ -63,7 +57,6 @@ const Stars = ({ averageRating, id, lastElement }) => {
           {rating >= star ? "★" : "☆"}
         </span>
       ))}
-      <p>Rating: {averageRating}</p>
     </div>
   );
 };

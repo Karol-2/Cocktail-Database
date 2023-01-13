@@ -299,6 +299,51 @@ recordRoutes.route("/stats/commented").get(function (req, response) {
       }
     });
 });
+recordRoutes.route("/stats/thebest").get(function (req, response) {
+  let db_connect = dbo.getDb("coctail_database");
+
+  db_connect
+    .collection("drinks")
+    .aggregate([
+      {
+        $unwind: "$Reviews",
+      },
+      {
+        $addFields: {
+          Reviews: { $convert: { input: "$Reviews", to: "double" } },
+        },
+      },
+      {
+        $group: {
+          _id: "$strDrink",
+          avgReview: { $avg: "$Reviews" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          type: "$_id",
+          number: "$avgReview",
+        },
+      },
+      {
+        $sort: { number: -1 },
+      },
+      {
+        $limit: 10,
+      },
+    ])
+    .toArray((err, res) => {
+      if (err) {
+        console.error(err);
+        response.status(500).send({
+          error: "Error during aggregation.",
+        });
+      } else {
+        response.json(res);
+      }
+    });
+});
 // -----------------------------------------------------
 
 recordRoutes.route("/reviews/:drinkId/:number").post(function (req, res) {

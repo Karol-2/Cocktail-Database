@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import Table from "../Table/Table";
-import "../NewBarChart/NewBarChart.scss";
+import "../NewColChart/NewColChart.scss";
 
 function NewPieChart(props) {
   const [type, setType] = useState([]);

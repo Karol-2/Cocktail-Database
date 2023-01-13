@@ -1,5 +1,5 @@
 import React from "react";
-import NewBarChart from "../../components/NewBarChart/NewBarChart";
+import NewColChart from "../../components/NewColChart/NewColChart";
 import NewPieChart from "../../components/NewPieChart/NewPieChart";
 
 const Stats = () => {
@@ -17,11 +17,20 @@ const Stats = () => {
       </div>
       <div>
         {" "}
-        <NewBarChart
+        <NewColChart
           type="commented"
           title="Most commented drinks"
           ytitle="Number of comments"
           thing="Comments"
+        />
+      </div>
+      <div>
+        {" "}
+        <NewColChart
+          type="thebest"
+          title="Drinks with the best reviews"
+          ytitle="Average of reviews"
+          thing="Average"
         />
       </div>
       <div>
@@ -35,7 +44,7 @@ const Stats = () => {
       </div>
       <div>
         {" "}
-        <NewBarChart
+        <NewColChart
           type="users"
           title="Most active users"
           ytitle="Number of comments"

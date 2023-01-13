@@ -3,7 +3,6 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import "./Login.scss";
-import NewBarChart from "../../components/NewBarChart/NewBarChart";
 
 const Login = () => {
   function submitData(data) {

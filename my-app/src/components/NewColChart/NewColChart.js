@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import Table from "../Table/Table";
-import "./NewBarChart.scss";
+import "./NewColChart.scss";
 
-function NewBarChart(props) {
+function NewColChart(props) {
   const [type, setType] = useState([]);
   const [number, setNumber] = useState([]);
   const [fullData, setFullData] = useState([]);
@@ -104,4 +104,4 @@ function NewBarChart(props) {
   );
 }
 
-export default NewBarChart;
+export default NewColChart;
