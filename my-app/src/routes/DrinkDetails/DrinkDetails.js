@@ -14,6 +14,8 @@ const DrinkDetails = () => {
   const drinkBase = useContext(DrinkContext);
   const currentDrink = drinkBase.filter((drink) => drink._id === id)[0];
   const Ingredients = GetIngredients(currentDrink);
+  const lastReview = currentDrink.Reviews.slice(-1)[0];
+
   const average =
     currentDrink.Reviews.map((el) => parseInt(el)).reduce(
       (acc, val) => acc + val,
@@ -27,7 +29,7 @@ const DrinkDetails = () => {
       .then((data) => setComment(data))
       .then(() => setShowComments(true));
   });
-  console.log(currentDrink.Reviews);
+
   return (
     <div className="drink-details">
       <div className="product-info">
@@ -43,7 +45,11 @@ const DrinkDetails = () => {
           <h3>Category: {currentDrink.strCategory}</h3>
           <h4>{currentDrink.strAlcoholic + " drink"}</h4>
           <h4>Glass: {currentDrink.strGlass}</h4>
-          <Stars averageRating={average} />
+          <Stars
+            averageRating={average}
+            id={currentDrink._id}
+            lastElement={lastReview}
+          />
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (
