@@ -1,0 +1,150 @@
+[
+  {
+    "strDrink": "Sample Drink #1",
+    "strCategory": "Cocktail",
+    "strAlcoholic": "Alcoholic",
+    "strGlass": "Highball glass",
+    "strInstructions": "The vodka lemon is prepared directly in a highball glass or in a large tumbler: put 6-7 ice cubes in the glass, pour the vodka, lemonade and mix with a bar spoon. Finally decorate with a slice of lemon and, if you prefer, add a few mint leaves. Your vodka lemon is ready to be served.",
+    "strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/mql55h1643820632.jpg",
+    "strIngredient1": "Vodka",
+    "strIngredient2": "Lemon Juice",
+    "strIngredient3": "Lemon Peel",
+    "strIngredient4": "Ice",
+    "strIngredient5": null,
+    "strIngredient6": null,
+    "strIngredient7": null,
+    "strIngredient8": null,
+    "strIngredient9": null,
+    "strIngredient10": null,
+    "strIngredient11": null,
+    "strMeasure1": "5 cl",
+    "strMeasure2": "7 cl",
+    "strMeasure3": "1 Slice",
+    "strMeasure4": "cubes",
+    "strMeasure5": "",
+    "strMeasure6": "",
+    "strMeasure7": "",
+    "strMeasure8": null,
+    "strMeasure9": null,
+    "strMeasure10": null,
+    "strMeasure11": null,
+    "strImageSource": "https://blog.giallozafferano.it/lacucinadiliberte/wp-content/uploads/2019/09/Vodka-lemon-d.jpg",
+    "Comments": [
+      {
+        "id": "28ab000c-8921-4eb8-8445-ef770c5bb358",
+        "name": "Jessica",
+        "comment": "Stunning taste!"
+      },
+      {
+        "id": "f04e4a26-95fc-40df-8291-44b54750096a",
+        "name": "Amy",
+        "comment": "Not a fan, sorry."
+      },
+      {
+        "id": "18a51f53-03d8-49c0-ad1b-a15507eabe4e",
+        "name": "Amy",
+        "comment": "I tried this and it was delicious!"
+      },
+      {
+        "id": "f3ae0077-ee54-4f00-84ad-88ba927bfe85",
+        "name": "John",
+        "comment": "Great recipe!"
+      },
+      {
+        "id": "e4716877-c09b-4398-8dda-0df945534841",
+        "name": "Jessica",
+        "comment": "Stunning taste!"
+      },
+      {
+        "id": "0c6887d1-a6b7-4b5b-93ab-b903274ca6d3",
+        "name": "John",
+        "comment": "I've had the time of my life!"
+      },
+      {
+        "id": "90c8c741-fb94-4de4-abee-f15a680f780a",
+        "name": "Jan",
+        "comment": "I still have terrible hangover..."
+      },
+      {
+        "id": "0f98da7a-63e8-49f9-891b-f55f1ba0d1b1",
+        "name": "Amy",
+        "comment": "I'll definitely make this again!"
+      }
+    ],
+    "Reviews": []
+  },
+  {
+    "strDrink": "Sample Drink #2",
+    "strCategory": "Ordinary Drink",
+    "strAlcoholic": "Alcoholic",
+    "strGlass": "Highball glass",
+    "strInstructions": "Pour rum into a highball glass over ice cubes. Add orange juice, stir, and serve.",
+    "strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/4c85zq1511782093.jpg",
+    "strIngredient1": "Light rum",
+    "strIngredient2": "Orange juice",
+    "strIngredient3": null,
+    "strIngredient4": null,
+    "strIngredient5": null,
+    "strIngredient6": null,
+    "strIngredient7": null,
+    "strIngredient8": null,
+    "strIngredient9": null,
+    "strIngredient10": null,
+    "strIngredient11": null,
+    "strMeasure1": "1 1/2 oz ",
+    "strMeasure2": "5 oz ",
+    "strMeasure3": null,
+    "strMeasure4": null,
+    "strMeasure5": null,
+    "strMeasure6": null,
+    "strMeasure7": null,
+    "strMeasure8": null,
+    "strMeasure9": null,
+    "strMeasure10": null,
+    "strMeasure11": null,
+    "strImageSource": null,
+    "Comments": [
+      {
+        "id": "fbaf2655-83b1-405d-a0c4-1c191ae4c117",
+        "name": "Amy",
+        "comment": "I had to go to hospital after this"
+      },
+      {
+        "id": "5fb2a8a5-d18f-4865-949d-147603e80e00",
+        "name": "John",
+        "comment": "I had to go to hospital after this"
+      },
+      {
+        "id": "c329e242-c5d4-4c8c-889d-74c61895df59",
+        "name": "Jakub",
+        "comment": "I still have terrible hangover..."
+      },
+      {
+        "id": "2169bf9c-292e-4827-a13c-c0262486d009",
+        "name": "Chris",
+        "comment": "I'll definitely make this again!"
+      },
+      {
+        "id": "ab50245c-54fb-42ee-8e64-121758c50997",
+        "name": "Chris",
+        "comment": "Thanks for sharing!"
+      },
+      {
+        "id": "3a87508f-d541-4705-a181-302979ccdf2e",
+        "name": "Monika",
+        "comment": "Stunning taste!"
+      },
+      {
+        "id": "0c940037-6970-42ee-8265-a58e765ae254",
+        "name": "Jessica",
+        "comment": "I had to go to hospital after this"
+      },
+      {
+        "id": "381abab9-fe25-487f-8bf2-263248fdb9fb",
+        "name": "Jessica",
+        "comment": "I've had the time of my life!"
+      }
+    ],
+    "Reviews": []
+  }
+]

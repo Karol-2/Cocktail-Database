@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
+import AddFromFile from "../AddFromFile.js/AddFromFile";
 
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
@@ -21,6 +22,7 @@ function DrinkAddForm() {
   return (
     <div className="container">
       <h1>Add a New Drink</h1>
+      <AddFromFile />
       <Formik
         initialValues={{
           strDrink: "",
