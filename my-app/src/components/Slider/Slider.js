@@ -7,7 +7,6 @@ import { DrinkContext } from "../../ContexApi";
 function Slider() {
   const [index, setIndex] = useState(0);
   const drinkBase = useContext(DrinkContext);
-  console.log(drinkBase);
 
   useEffect(() => {
     const lastIndex = 4;
