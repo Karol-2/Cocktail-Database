@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import "./Stats.scss";
+import React from "react";
 import NewBarChart from "../../components/NewBarChart/NewBarChart";
+import NewPieChart from "../../components/NewPieChart/NewPieChart";
 
 const Stats = () => {
   return (
@@ -8,21 +8,28 @@ const Stats = () => {
       <h1>Stats</h1>
       <div>
         {" "}
-        <NewBarChart
+        <NewPieChart
           type="alco"
           title="Types of drinks"
           ytitle="Number of drinks"
-          color="#f90000"
           thing="Drinks"
         />
       </div>
       <div>
         {" "}
         <NewBarChart
+          type="commented"
+          title="Most commented drinks"
+          ytitle="Number of comments"
+          thing="Comments"
+        />
+      </div>
+      <div>
+        {" "}
+        <NewPieChart
           type="glass"
           title="Types of glasses"
           ytitle="Number of drinks"
-          color="#f90000"
           thing="Glasses"
         />
       </div>
@@ -32,17 +39,6 @@ const Stats = () => {
           type="users"
           title="Most active users"
           ytitle="Number of comments"
-          color="#f90000"
-          thing="Comments"
-        />
-      </div>
-      <div>
-        {" "}
-        <NewBarChart
-          type="commented"
-          title="Most commented drinks"
-          ytitle="Number of comments"
-          color="#f90000"
           thing="Comments"
         />
       </div>

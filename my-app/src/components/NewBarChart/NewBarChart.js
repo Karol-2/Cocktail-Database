@@ -8,8 +8,19 @@ function NewBarChart(props) {
   const [number, setNumber] = useState([]);
   const [fullData, setFullData] = useState([]);
 
+  function addMissingType(array) {
+    const types = ["Optional alcohol", "Non alcoholic", "Alcoholic"];
+
+    let missingTypes = types.filter(
+      (type) => !array.some((el) => el.type === type)
+    );
+    let newArr = array.concat(
+      missingTypes.map((type) => ({ type, number: 0 }))
+    );
+    return newArr;
+  }
   useEffect(() => {
-    const getSocialrecord = async () => {
+    const fetchData = async () => {
       const dataReq = await fetch(`http://localhost:5000/stats/${props.type}`);
       const dataRes = await dataReq.json();
 
@@ -17,10 +28,13 @@ function NewBarChart(props) {
       const numbers = dataRes.map((data) => data.number);
       setType(types);
       setNumber(numbers);
-      setFullData(dataRes);
+      props.type === "alco"
+        ? setFullData(addMissingType(dataRes))
+        : setFullData(dataRes);
     };
-    getSocialrecord();
+    fetchData();
   }, []);
+
   return (
     <div className="main-graph">
       <div className="chart">
@@ -39,8 +53,14 @@ function NewBarChart(props) {
               text: props.title,
               style: { fontSize: 30 },
             },
+            states: {
+              hover: {
+                filter: {
+                  type: "none",
+                },
+              },
+            },
 
-            colors: [props.color],
             theme: { mode: "light" },
 
             xaxis: {
@@ -52,7 +72,7 @@ function NewBarChart(props) {
                 formatter: (val) => {
                   return `${val}`;
                 },
-                style: { fontSize: "15", colors: [props.color] },
+                style: { fontSize: "15", colors: "#434242" },
               },
               title: {
                 text: props.ytitle,
