@@ -243,8 +243,8 @@ recordRoutes.route("/stats/users").get(function (req, response) {
       {
         $project: {
           _id: 0,
-          user: "$_id",
-          posts: "$count",
+          type: "$_id",
+          number: "$count",
         },
       },
       {
@@ -283,8 +283,8 @@ recordRoutes.route("/stats/commented").get(function (req, response) {
       {
         $project: {
           _id: 0,
-          drink: "$_id",
-          comments: "$count",
+          type: "$_id",
+          number: "$count",
         },
       },
     ])
@@ -299,4 +299,38 @@ recordRoutes.route("/stats/commented").get(function (req, response) {
       }
     });
 });
+// -----------------------------------------------------
+
+recordRoutes.route("/reviews/:drinkId/:number").post(function (req, res) {
+  let db_connect = dbo.getDb("coctail_database");
+  db_connect
+    .collection("drinks")
+    .updateOne(
+      { _id: ObjectId(req.params.drinkId) },
+      { $push: { Reviews: req.params.number } },
+      function (err, obj) {
+        if (err) throw err;
+        console.log("1 review added");
+        res.json(obj);
+      }
+    );
+});
+
+recordRoutes
+  .route("/reviews/:drinkId/:oldnumber/:newnumber")
+  .put(function (req, res) {
+    let db_connect = dbo.getDb("coctail_database");
+    db_connect.collection("drinks").updateOne(
+      {
+        _id: ObjectId(req.params.drinkId),
+        Reviews: { $elemMatch: { $eq: req.params.oldnumber } },
+      },
+      { $set: { "Reviews.$": req.params.newnumber } },
+      function (err, obj) {
+        if (err) throw err;
+        console.log("1 review changed");
+        res.json(obj);
+      }
+    );
+  });
 module.exports = recordRoutes;
