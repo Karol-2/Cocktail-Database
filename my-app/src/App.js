@@ -39,7 +39,6 @@ const App = () => {
             <Route path="/database" element={<Database />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/login" element={<Login />} />
-
             <Route path="/drink/:id" element={<DrinkDetails />}></Route>
             <Route path="/admin" element={<AdminPanel />}>
               <Route path="/admin/comments" element={<TableComments />} />

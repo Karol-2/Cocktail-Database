@@ -5,7 +5,6 @@ import NewPieChart from "../../components/NewPieChart/NewPieChart";
 const Stats = () => {
   return (
     <div>
-      <h1>Stats</h1>
       <div>
         {" "}
         <NewPieChart

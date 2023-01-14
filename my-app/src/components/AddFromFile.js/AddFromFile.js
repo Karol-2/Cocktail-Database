@@ -41,7 +41,7 @@ function AddFromFile() {
         type="file"
         onChange={handleFileSelect}
         ref={(ref) => setFileInput(ref)}
-        class="form-control"
+        className="form-control"
       />
 
       <button className="btn btn-danger" onClick={handleClear}>

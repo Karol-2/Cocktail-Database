@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
-import { DrinkContext } from "../../ContexApi";
+import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./AdminPanel.scss";
 
 const AdminPanel = () => {
-  const drinkBase = useContext(DrinkContext);
-
   return (
     <div className="main-page">
       <div className="panels">

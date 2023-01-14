@@ -11,7 +11,7 @@ const TableComments = () => {
       .catch((error) => console.error(error))
       .then((data) => setTableContent(data));
   }, [submit]);
-  console.log(tableContent);
+
   const handleDelete = (id, drinkId) => {
     fetch(`http://localhost:5000/comments/${drinkId}/${id}`, {
       method: "DELETE",

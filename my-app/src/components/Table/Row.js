@@ -1,7 +1,7 @@
 const Row = (props) => {
   const { type, number } = props;
   return (
-    <tr>
+    <tr key={type}>
       <td>{type}</td>
       <td>{number}</td>
     </tr>

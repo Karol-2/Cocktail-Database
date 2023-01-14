@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Slider from "../../components/Slider/Slider";
 
 const Home = () => {

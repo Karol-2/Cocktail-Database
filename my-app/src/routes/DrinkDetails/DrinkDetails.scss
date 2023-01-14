@@ -5,6 +5,7 @@ div.product-info {
   padding: 10px;
   justify-content: space-evenly;
   gap: 20px;
+  min-height: 100vh;
 
   h2 {
     color: $primary;
