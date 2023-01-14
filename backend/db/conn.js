@@ -1,12 +1,15 @@
 const { MongoClient } = require("mongodb");
 const Db = process.env.MONGO_URI;
+
 console.log(Db);
+
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 var _db;
+const initialData = require("./initial_data.json");
 
 module.exports = {
   connectToServer: function (callback) {
@@ -24,7 +27,6 @@ module.exports = {
 };
 
 // dodanie initial data do działania na bazie
-const initialData = require("./initial_data.json");
 
 module.exports.connectToServer(function (err) {
   if (err) {
