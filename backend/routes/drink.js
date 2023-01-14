@@ -5,78 +5,85 @@ const myobj = require("./drinkPOSTobject");
 const putObject = require("./drinkPUTobject");
 const ObjectId = require("mongodb").ObjectId;
 
-recordRoutes.route("/drinks").get((req, res) => {
+recordRoutes.route("/drinks").get(async (req, res) => {
   let db_connect = dbo.getDb("coctail_database");
-
-  db_connect
-    .collection("drinks")
-    .find({})
-    .sort({ strDrink: 1 })
-    .toArray((err, docs) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send({
-          error:
-            "An error occurred while fetching documents from the database.",
-        });
-      } else {
-        res.send(docs);
-      }
+  try {
+    const docs = await db_connect
+      .collection("drinks")
+      .find({})
+      .sort({ strDrink: 1 })
+      .toArray();
+    res.send(docs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      error: "An error occurred while fetching documents from the database.",
     });
+  }
 });
 
-recordRoutes.route("/drinks/add").post(function (req, response) {
+recordRoutes.route("/drinks/add").post(async function (req, response) {
   let db_connect = dbo.getDb("coctail_database");
 
-  db_connect
-    .collection("drinks")
-    .findOne({ strDrink: req.body.strDrink }, function (err, result) {
-      if (err) throw err;
-
-      if (result) {
-        response
-          .status(400)
-          .send({ error: "Drink with this name already exists!" });
-      } else {
-        let new_obj = myobj(req);
-
-        db_connect.collection("drinks").insertOne(new_obj, function (err, res) {
-          if (err) throw err;
-          console.log("1 document added");
-          response.json(res);
-        });
-      }
-    });
+  try {
+    const result = await db_connect
+      .collection("drinks")
+      .findOne({ strDrink: req.body.strDrink });
+    if (result) {
+      response
+        .status(400)
+        .send({ error: "Drink with this name already exists!" });
+    } else {
+      let new_obj = myobj(req);
+      const res = await db_connect.collection("drinks").insertOne(new_obj);
+      console.log("1 document added");
+      response.json(res);
+    }
+  } catch (err) {
+    throw err;
+  }
 });
 
-recordRoutes.route("/drinks/:id").delete(function (req, res) {
+recordRoutes.route("/drinks/:id").delete(async function (req, res) {
   let db_connect = dbo.getDb("coctail_database");
   let myquery = { _id: ObjectId(req.params.id) };
-  db_connect.collection("drinks").deleteOne(myquery, function (err, obj) {
-    if (err) throw err;
-    console.log("1 document deleted");
+  try {
+    const obj = await new Promise((resolve, reject) => {
+      db_connect.collection("drinks").deleteOne(myquery, function (err, obj) {
+        if (err) reject(err);
+        console.log("1 document deleted");
+        resolve(obj);
+      });
+    });
     res.json(obj);
-  });
+  } catch (err) {
+    throw err;
+  }
 });
 
-recordRoutes.route("/drinks/update/:id").put(function (req, response) {
+recordRoutes.route("/drinks/update/:id").put(async function (req, response) {
   let db_connect = dbo.getDb("coctail_database");
 
   let newValues = putObject(req);
 
-  db_connect
-    .collection("drinks")
-    .updateOne(
-      { _id: ObjectId(req.params.id) },
-      { $set: newValues },
-      function (err, res) {
-        if (err) throw err;
-        console.log("1 document updated successfully");
-        response.json(res);
-      }
-    );
-  console.log(newValues);
-  console.log(req.params.id);
+  try {
+    const res = await new Promise((resolve, reject) => {
+      db_connect
+        .collection("drinks")
+        .updateOne(
+          { _id: ObjectId(req.params.id) },
+          { $set: newValues },
+          function (err, res) {
+            if (err) reject(err);
+            console.log("1 document updated successfully");
+            resolve(res);
+          }
+        );
+    });
+    response.json(res);
+  } catch (err) {
+    throw err;
+  }
 });
 
 module.exports = recordRoutes;

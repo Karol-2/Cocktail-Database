@@ -2,196 +2,188 @@ const express = require("express");
 const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 
-recordRoutes.route("/stats/glass").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
-
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      {
-        $group: {
-          _id: "$strGlass",
-          count: { $sum: 1 },
+recordRoutes.route("/stats/glass").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        {
+          $group: {
+            _id: "$strGlass",
+            count: { $sum: 1 },
+          },
         },
-      },
-      {
-        $sort: { count: -1 },
-      },
-      {
-        $project: {
-          _id: 0,
-          type: "$_id",
-          number: "$count",
+        {
+          $sort: { count: -1 },
         },
-      },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation.",
-        });
-      } else {
-        response.json(res);
-      }
+        {
+          $project: {
+            _id: 0,
+            type: "$_id",
+            number: "$count",
+          },
+        },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation.",
     });
+  }
 });
 
-recordRoutes.route("/stats/alco").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
-
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      {
-        $group: {
-          _id: "$strAlcoholic",
-          count: { $sum: 1 },
+recordRoutes.route("/stats/alco").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        {
+          $group: {
+            _id: "$strAlcoholic",
+            count: { $sum: 1 },
+          },
         },
-      },
-      {
-        $sort: { count: -1 },
-      },
-      {
-        $project: {
-          _id: 0,
-          type: "$_id",
-          number: "$count",
+        {
+          $sort: { count: -1 },
         },
-      },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation.",
-        });
-      } else {
-        response.json(res);
-      }
+        {
+          $project: {
+            _id: 0,
+            type: "$_id",
+            number: "$count",
+          },
+        },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation.",
     });
+  }
 });
-recordRoutes.route("/stats/users").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
 
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      {
-        $unwind: "$Comments",
-      },
-      {
-        $group: {
-          _id: "$Comments.name",
-          count: { $sum: 1 },
+recordRoutes.route("/stats/users").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        {
+          $unwind: "$Comments",
         },
-      },
-      {
-        $sort: { count: -1 },
-      },
-      {
-        $project: {
-          _id: 0,
-          type: "$_id",
-          number: "$count",
+        {
+          $group: {
+            _id: "$Comments.name",
+            count: { $sum: 1 },
+          },
         },
-      },
-      {
-        $limit: 10,
-      },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation.",
-        });
-      } else {
-        response.json(res);
-      }
+        {
+          $sort: { count: -1 },
+        },
+        {
+          $project: {
+            _id: 0,
+            type: "$_id",
+            number: "$count",
+          },
+        },
+        {
+          $limit: 10,
+        },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation.",
     });
+  }
 });
-recordRoutes.route("/stats/commented").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
-
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      {
-        $group: {
-          _id: "$strDrink",
-          count: { $sum: { $size: "$Comments" } },
+recordRoutes.route("/stats/commented").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        {
+          $group: {
+            _id: "$strDrink",
+            count: { $sum: { $size: "$Comments" } },
+          },
         },
-      },
-      {
-        $sort: { count: -1 },
-      },
-      {
-        $limit: 10,
-      },
-      {
-        $project: {
-          _id: 0,
-          type: "$_id",
-          number: "$count",
+        {
+          $sort: { count: -1 },
         },
-      },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation.",
-        });
-      } else {
-        response.json(res);
-      }
+        {
+          $limit: 10,
+        },
+        {
+          $project: {
+            _id: 0,
+            type: "$_id",
+            number: "$count",
+          },
+        },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation.",
     });
+  }
 });
-recordRoutes.route("/stats/thebest").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
 
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      {
-        $unwind: "$Reviews",
-      },
-      {
-        $addFields: {
-          Reviews: { $convert: { input: "$Reviews", to: "double" } },
+recordRoutes.route("/stats/thebest").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        {
+          $unwind: "$Reviews",
         },
-      },
-      {
-        $group: {
-          _id: "$strDrink",
-          avgReview: { $avg: "$Reviews" },
+        {
+          $addFields: {
+            Reviews: { $convert: { input: "$Reviews", to: "double" } },
+          },
         },
-      },
-      {
-        $project: {
-          _id: 0,
-          type: "$_id",
-          number: "$avgReview",
+        {
+          $group: {
+            _id: "$strDrink",
+            avgReview: { $avg: "$Reviews" },
+          },
         },
-      },
-      {
-        $sort: { number: -1 },
-      },
-      {
-        $limit: 10,
-      },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation.",
-        });
-      } else {
-        response.json(res);
-      }
+        {
+          $project: {
+            _id: 0,
+            type: "$_id",
+            number: "$avgReview",
+          },
+        },
+        {
+          $sort: { number: -1 },
+        },
+        {
+          $limit: 10,
+        },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation.",
     });
+  }
 });
 
 module.exports = recordRoutes;

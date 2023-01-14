@@ -3,76 +3,74 @@ const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-recordRoutes.route("/comment/add").patch(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
-
-  let newComment = {
-    name: req.body.name,
-    comment: req.body.comment,
-    id: req.body.id,
-  };
-  db_connect
-    .collection("drinks")
-    .updateOne(
-      { _id: ObjectId(req.body.drinkId) },
-      { $push: { Comments: newComment } },
-      function (err, res) {
-        if (err) throw err;
-        console.log("Comment added");
-        response.json(res);
-      }
-    );
-});
-recordRoutes.route("/comments/:id").get(function (req, res) {
-  let db_connect = dbo.getDb("coctail_database");
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect
-    .collection("drinks")
-    .findOne(
-      myquery,
-      { projection: { Comments: 1, _id: 0 } },
-      function (err, obj) {
-        if (err) throw err;
-        res.json(obj);
-      }
-    );
+recordRoutes.route("/comment/add").patch(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    let newComment = {
+      name: req.body.name,
+      comment: req.body.comment,
+      id: req.body.id,
+    };
+    const result = await db_connect
+      .collection("drinks")
+      .updateOne(
+        { _id: ObjectId(req.body.drinkId) },
+        { $push: { Comments: newComment } }
+      );
+    console.log("Comment added");
+    response.json(result);
+  } catch (err) {
+    throw err;
+  }
 });
 
-recordRoutes.route("/comments").get(function (req, response) {
-  let db_connect = dbo.getDb("coctail_database");
+recordRoutes.route("/comments/:id").get(async function (req, res) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    let myquery = { _id: ObjectId(req.params.id) };
+    const obj = await db_connect
+      .collection("drinks")
+      .findOne(myquery, { projection: { Comments: 1, _id: 0 } });
+    res.json(obj);
+  } catch (err) {
+    throw err;
+  }
+});
 
-  db_connect
-    .collection("drinks")
-    .aggregate([
-      { $unwind: "$Comments" },
-      { $sort: { strDrink: 1, "Comments.id": 1 } },
-      { $project: { _id: 1, strDrink: 1, Comments: 1 } },
-    ])
-    .toArray((err, res) => {
-      if (err) {
-        console.error(err);
-        response.status(500).send({
-          error: "Error during aggregation occured!.",
-        });
-      } else {
-        response.json(res);
-      }
+recordRoutes.route("/comments").get(async function (req, response) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const res = await db_connect
+      .collection("drinks")
+      .aggregate([
+        { $unwind: "$Comments" },
+        { $sort: { strDrink: 1, "Comments.id": 1 } },
+        { $project: { _id: 1, strDrink: 1, Comments: 1 } },
+      ])
+      .toArray();
+    response.json(res);
+  } catch (err) {
+    console.error(err);
+    response.status(500).send({
+      error: "Error during aggregation occured!.",
     });
+  }
 });
 
-recordRoutes.route("/comments/:drinkId/:id").delete(function (req, res) {
-  let db_connect = dbo.getDb("coctail_database");
-  db_connect
-    .collection("drinks")
-    .updateOne(
-      { _id: ObjectId(req.params.drinkId) },
-      { $pull: { Comments: { id: req.params.id } } },
-      function (err, obj) {
-        if (err) throw err;
-        console.log("1 comment deleted");
-        res.json(obj);
-      }
-    );
+recordRoutes.route("/comments/:drinkId/:id").delete(async function (req, res) {
+  try {
+    let db_connect = dbo.getDb("coctail_database");
+    const result = await db_connect
+      .collection("drinks")
+      .updateOne(
+        { _id: ObjectId(req.params.drinkId) },
+        { $pull: { Comments: { id: req.params.id } } }
+      );
+    console.log("1 comment deleted");
+    res.json(result);
+  } catch (err) {
+    throw err;
+  }
 });
 
 module.exports = recordRoutes;
