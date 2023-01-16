@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import randomId from "../../helper/randomId";
 
-const CommentForm = ({ drinkid }) => {
+const CommentForm = ({ drinkid, setAdded }) => {
+  const [added, setAddedState] = useState(true);
   const handleSubmit = (values, { resetForm }) => {
     values.id = randomId();
     fetch("http://localhost:5000/comment/add", {
@@ -15,6 +16,11 @@ const CommentForm = ({ drinkid }) => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .then(() => alert("Success!"))
+      .then(() => {
+        setAddedState(!added);
+        setAdded(!added);
+      })
+
       .catch((err) => console.log(err));
     resetForm({});
   };

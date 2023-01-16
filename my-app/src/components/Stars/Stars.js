@@ -26,16 +26,18 @@ const reducer = (state, action) => {
   }
 };
 
-const Stars = ({ averageRating, id, lastElement }) => {
+const Stars = ({ averageRating, id, lastElement, setLastReview }) => {
   const [rating, setRating] = useState(averageRating);
   const [state, dispatch] = useReducer(reducer, rating);
   const [isFirstClick, setClick] = useState(true);
 
   function handleClick(newRating) {
     if (isFirstClick) {
+      setLastReview(newRating);
       dispatch({ type: "FIRST_CLICK", rating: newRating, id: id });
       setClick(false);
     } else {
+      setLastReview(newRating);
       dispatch({
         type: "EVERY_OTHER_CLICK",
         rating: newRating,

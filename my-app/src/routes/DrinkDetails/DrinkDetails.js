@@ -10,11 +10,15 @@ import GetIngredients from "./DrinkDetailsLogic";
 const DrinkDetails = () => {
   const { id } = useParams();
   const [comments, setComment] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const [added, setAdded] = useState(true);
   const [showComments, setShowComments] = useState(false);
   const drinkBase = useContext(DrinkContext);
   const currentDrink = drinkBase.filter((drink) => drink._id === id)[0];
   const Ingredients = GetIngredients(currentDrink);
-  const lastReview = currentDrink.Reviews.slice(-1)[0];
+  const [lastReview, setLastReview] = useState(
+    currentDrink.Reviews.slice(-1)[0]
+  );
 
   const average =
     currentDrink.Reviews.map((el) => parseInt(el)).reduce(
@@ -28,7 +32,7 @@ const DrinkDetails = () => {
       .catch((error) => console.error(error))
       .then((data) => setComment(data))
       .then(() => setShowComments(true));
-  });
+  }, [lastReview, added]);
 
   return (
     <div className="drink-details">
@@ -49,6 +53,7 @@ const DrinkDetails = () => {
             averageRating={average}
             id={currentDrink._id}
             lastElement={lastReview}
+            setLastReview={setLastReview}
           />
           <h2>Ingredients: </h2>
           <ul>
@@ -73,7 +78,7 @@ const DrinkDetails = () => {
         </div>
       </div>
       <h3>Leave a comment!</h3>
-      <CommentForm drinkid={id} />
+      <CommentForm drinkid={id} setAdded={setAdded} />
       <div className="comments">
         <h2>Comments</h2>
 
