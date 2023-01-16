@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import AddFromFile from "../AddFromFile.js/AddFromFile";
+import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
+  const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
   const handleSubmit = (values, formikBag) => {
     fetch("http://localhost:5000/drinks/add", {
@@ -18,6 +20,7 @@ function DrinkAddForm() {
       .then(alert("Drink added"))
       .then(() => formikBag.resetForm())
       .then(setSend(() => !send))
+      .then(setRefreshData(!refreshData))
       .catch((err) => console.log(err));
   };
 

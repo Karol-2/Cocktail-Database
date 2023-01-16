@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import "./TableAdmin.scss";
 import { DrinkContext } from "../../ContexApi";
+import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 const TableAdmin = (data) => {
   const drinkBase = useContext(DrinkContext);
   const [tableContent, setTableContent] = useState(drinkBase);
+  const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/drinks/${id}`, {
@@ -14,6 +16,7 @@ const TableAdmin = (data) => {
         console.log("Success:", json);
         setTableContent(tableContent.filter((item) => item._id !== id));
       })
+      .then(setRefreshData(!refreshData))
       .catch((error) => {
         console.error("Error:", error);
       });

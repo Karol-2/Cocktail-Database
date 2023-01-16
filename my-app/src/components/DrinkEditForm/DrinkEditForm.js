@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { DrinkContext } from "../../ContexApi";
+import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 
 function DrinkEditForm() {
   const drinkbase = useContext(DrinkContext);
   const [send, setSend] = useState(false);
+  const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
   const handleSubmit = (values, { resetForm }) => {
     const id = values._id;
@@ -25,6 +27,7 @@ function DrinkEditForm() {
       .then(() => alert("Success!"))
       .then(setSend(() => !send))
       .then(resetForm())
+      .then(setRefreshData(!refreshData))
       .catch((err) => console.log(err));
   };
 

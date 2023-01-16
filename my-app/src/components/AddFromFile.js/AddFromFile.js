@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 
 function AddFromFile() {
   const [fileContent, setFileContent] = useState("");
   const [fileInput, setFileInput] = useState(null);
+  const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
   const sendData = (data) => {
     data.forEach((item) => {
@@ -15,6 +17,7 @@ function AddFromFile() {
       })
         .then((res) => res.json())
         .then((response) => console.log(response))
+        .then(setRefreshData(!refreshData))
         .catch((error) => alert("Error:", error));
     });
     alert("File's content added!");
