@@ -6,15 +6,14 @@ function DrinkEditForm() {
   const drinkbase = useContext(DrinkContext);
   const [send, setSend] = useState(false);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     const id = values._id;
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
         delete values[key];
       }
     });
-    alert(JSON.stringify(values));
-
+    console.log(`http://localhost:5000/drinks/update/${id}`);
     fetch(`http://localhost:5000/drinks/update/${id}`, {
       method: "PUT",
       headers: {
@@ -23,8 +22,9 @@ function DrinkEditForm() {
       body: JSON.stringify(values),
     })
       .then((res) => res.json())
-      .then((data) => alert(data))
+      .then(() => alert("Success!"))
       .then(setSend(() => !send))
+      .then(resetForm())
       .catch((err) => console.log(err));
   };
 
@@ -66,7 +66,7 @@ function DrinkEditForm() {
         }}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({ isSubmitting }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="strAlcoholic">Drink to edit</label>
