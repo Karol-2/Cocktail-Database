@@ -14,6 +14,7 @@ const CommentForm = ({ drinkid }) => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
+      .then(() => alert("Success!"))
       .catch((err) => console.log(err));
     resetForm({});
   };

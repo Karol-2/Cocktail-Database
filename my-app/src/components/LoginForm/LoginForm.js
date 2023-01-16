@@ -67,7 +67,7 @@ function RegistrationForm(props) {
             className="error"
           />
           <Button type="submit" disabled={isSubmitting}>
-            Login
+            Check
           </Button>
         </Form>
       )}

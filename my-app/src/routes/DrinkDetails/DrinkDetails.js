@@ -53,7 +53,9 @@ const DrinkDetails = () => {
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (
-              <li id={key}>{ingr.name + " " + ingr.amount}</li>
+              <li id={key} key={key}>
+                {ingr.name + " " + ingr.amount}
+              </li>
             ))}
           </ul>
 
@@ -63,7 +65,9 @@ const DrinkDetails = () => {
               .split(".")
               .filter((instr) => instr !== "")
               .map((sentence, key) => (
-                <li id={key}>{sentence}</li>
+                <li id={key} key={key}>
+                  {sentence}
+                </li>
               ))}
           </ol>
         </div>

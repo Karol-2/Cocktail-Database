@@ -32,7 +32,7 @@ const Database = () => {
                 return value;
             })
             .map((val, key) => {
-              return <Drinkcard drink={val} id={key} />;
+              return <Drinkcard drink={val} id={key} key={key} />;
             })}
         </Row>
       </div>

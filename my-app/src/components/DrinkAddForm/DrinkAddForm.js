@@ -5,7 +5,7 @@ import AddFromFile from "../AddFromFile.js/AddFromFile";
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, formikBag) => {
     fetch("http://localhost:5000/drinks/add", {
       method: "POST",
       headers: {
@@ -15,8 +15,39 @@ function DrinkAddForm() {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
+      .then(alert("Drink added"))
+      .then(() => formikBag.resetForm())
       .then(setSend(() => !send))
       .catch((err) => console.log(err));
+  };
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.strDrink) {
+      errors.strDrink = "Required";
+    }
+    if (!values.strCategory) {
+      errors.strCategory = "Required";
+    }
+    if (!values.strAlcoholic) {
+      errors.strAlcoholic = "Required";
+    }
+    if (!values.strGlass) {
+      errors.strGlass = "Required";
+    }
+    if (!values.strInstructions) {
+      errors.strInstructions = "Required";
+    }
+    if (!values.strDrinkThumb) {
+      errors.strDrinkThumb = "Required";
+    }
+    if (!values.strIngredient1) {
+      errors.strIngredient1 = "Required";
+    }
+    if (!values.strMeasure1) {
+      errors.strMeasure1 = "Required";
+    }
+    return errors;
   };
 
   return (
@@ -24,6 +55,7 @@ function DrinkAddForm() {
       <h1>Add a New Drink</h1>
       <AddFromFile />
       <Formik
+        validate={validate}
         initialValues={{
           strDrink: "",
           strCategory: "",
@@ -56,27 +88,59 @@ function DrinkAddForm() {
         }}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({ errors, touched }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="strDrink">Drink Name *</label>
-              <Field name="strDrink" type="text" className="form-control" />
+              <Field
+                name="strDrink"
+                type="text"
+                className="form-control"
+                required
+              />
+              {errors.strDrink && touched.strDrink ? (
+                <div style={{ color: "red" }}>{errors.strDrink}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strCategory">Category *</label>
-              <Field name="strCategory" type="text" className="form-control" />
+              <Field
+                name="strCategory"
+                type="text"
+                className="form-control"
+                required
+              />
+              {errors.strCategory && touched.strCategory ? (
+                <div style={{ color: "red" }}>{errors.strCategory}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strAlcoholic">Alcoholic *</label>
-              <Field name="strAlcoholic" as="select" className="form-control">
+              <Field
+                name="strAlcoholic"
+                as="select"
+                className="form-control"
+                required
+              >
                 <option value="Alcoholic">Alcoholic</option>
                 <option value="Non alcoholic">Non alcoholic</option>
                 <option value="Optional alcohol">Optional alcohol</option>
               </Field>
+              {errors.strAlcoholic && touched.strAlcoholic ? (
+                <div style={{ color: "red" }}>{errors.strAlcoholic}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strGlass">Glass *</label>
-              <Field name="strGlass" type="text" className="form-control" />
+              <Field
+                name="strGlass"
+                type="text"
+                className="form-control"
+                required
+              />
+              {errors.strGlass && touched.strGlass ? (
+                <div style={{ color: "red" }}>{errors.strGlass}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strInstructions">
@@ -86,7 +150,11 @@ function DrinkAddForm() {
                 name="strInstructions"
                 type="text"
                 className="form-control"
+                required
               />
+              {errors.strInstructions && touched.strInstructions ? (
+                <div style={{ color: "red" }}>{errors.strInstructions}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strDrinkThumb">Drink Thumbnail *</label>
@@ -94,7 +162,11 @@ function DrinkAddForm() {
                 name="strDrinkThumb"
                 type="text"
                 className="form-control"
+                required
               />
+              {errors.strDrinkThumb && touched.strDrinkThumb ? (
+                <div style={{ color: "red" }}>{errors.strDrinkThumb}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient1">Ingredient 1 *</label>
@@ -102,11 +174,23 @@ function DrinkAddForm() {
                 name="strIngredient1"
                 type="text"
                 className="form-control"
+                required
               />
+              {errors.strIngredient1 && touched.strIngredient1 ? (
+                <div style={{ color: "red" }}>{errors.strIngredient1}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure1">Measure 1 *</label>
-              <Field name="strMeasure1" type="text" className="form-control" />
+              <Field
+                name="strMeasure1"
+                type="text"
+                className="form-control"
+                required
+              />
+              {errors.strMeasure1 && touched.strMeasure1 ? (
+                <div style={{ color: "red" }}>{errors.strMeasure1}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient2">Ingredient 2</label>
