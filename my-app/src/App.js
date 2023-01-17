@@ -16,6 +16,8 @@ import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
 import Stats from "./routes/Stats/Stats";
 import "./styles/app.scss";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState(
@@ -39,33 +41,40 @@ const App = () => {
   }, [refreshData]);
 
   return (
-    <DrinkContext.Provider value={drinkBase}>
-      <RefreshDatabaseContext.Provider value={{ refreshData, setRefreshData }}>
-        <div className="app">
-          <Navbar />
-          <div className="page-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/database" element={<Database />} />
-              <Route path="/stats" element={<Stats />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/drink/:id" element={<DrinkDetails />}></Route>
-              <Route path="/admin" element={<AdminPanel />}>
-                <Route path="/admin/comments" element={<TableComments />} />
-                <Route path="/admin/database" element={<TableAdmin />} />
-                <Route path="/admin/database-add" element={<DrinkAddForm />} />
-                <Route
-                  path="/admin/database-edit"
-                  element={<DrinkEditForm />}
-                />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+    <Provider store={store}>
+      <DrinkContext.Provider value={drinkBase}>
+        <RefreshDatabaseContext.Provider
+          value={{ refreshData, setRefreshData }}
+        >
+          <div className="app">
+            <Navbar />
+            <div className="page-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/database" element={<Database />} />
+                <Route path="/stats" element={<Stats />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/drink/:id" element={<DrinkDetails />}></Route>
+                <Route path="/admin" element={<AdminPanel />}>
+                  <Route path="/admin/comments" element={<TableComments />} />
+                  <Route path="/admin/database" element={<TableAdmin />} />
+                  <Route
+                    path="/admin/database-add"
+                    element={<DrinkAddForm />}
+                  />
+                  <Route
+                    path="/admin/database-edit"
+                    element={<DrinkEditForm />}
+                  />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </RefreshDatabaseContext.Provider>
-    </DrinkContext.Provider>
+        </RefreshDatabaseContext.Provider>
+      </DrinkContext.Provider>
+    </Provider>
   );
 };
 
