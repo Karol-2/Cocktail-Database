@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router";
 import Comment from "../../components/Comment/Comment";
 import CommentForm from "../../components/CommentForm.js/CommentForm";
@@ -18,18 +18,27 @@ const DrinkDetails = () => {
   const [lastReview, setLastReview] = useState(
     currentDrink.Reviews.slice(-1)[0]
   );
-  const average =
-    currentDrink.Reviews.map((el) => parseFloat(el)).reduce(
-      (acc, val) => acc + val,
-      0
-    ) / currentDrink.Reviews.length;
+  const average = useMemo(() => {
+    return (
+      currentDrink.Reviews.map((el) => parseFloat(el)).reduce(
+        (acc, val) => acc + val,
+        0
+      ) / currentDrink.Reviews.length
+    );
+  }, [currentDrink.Reviews]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments/${id}`)
-      .then((response) => response.json())
-      .catch((error) => console.error(error))
-      .then((data) => setComment(data))
-      .then(() => setShowComments(true));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/comments/${id}`);
+        const data = await response.json();
+        setComment(data);
+        setShowComments(true);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [lastReview, added, id]);
 
   return (

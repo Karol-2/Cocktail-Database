@@ -6,24 +6,32 @@ const TableComments = () => {
   const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments`)
-      .then((response) => response.json())
-      .catch((error) => console.error(error))
-      .then((data) => setTableContent(data));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/comments`);
+        const data = await response.json();
+        setTableContent(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [submit]);
 
-  const handleDelete = (id, drinkId) => {
-    fetch(`http://localhost:5000/comments/${drinkId}/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log("Success:", json);
-        setTableContent(tableContent.filter((item) => item.Comments.id !== id));
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  const handleDelete = async (id, drinkId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/comments/${drinkId}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      console.log("Success:", data);
+      setTableContent(tableContent.filter((item) => item.Comments.id !== id));
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (

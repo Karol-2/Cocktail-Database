@@ -10,17 +10,23 @@ function NewPieChart(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataReq = await fetch(`http://localhost:5000/stats/${props.type}`);
-      const dataRes = await dataReq.json();
-
-      const types = dataRes.map((data) => data.type);
-      const numbers = dataRes.map((data) => data.number);
-      setType(types);
-      setNumber(numbers);
-      setFullData(dataRes);
+      try {
+        const dataReq = await fetch(
+          `http://localhost:5000/stats/${props.type}`
+        );
+        const dataRes = await dataReq.json();
+        const types = dataRes.map((data) => data.type);
+        const numbers = dataRes.map((data) => data.number);
+        setType(types);
+        setNumber(numbers);
+        setFullData(dataRes);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     };
     fetchData();
   }, []);
+
   return (
     <div className="main-graph">
       <div className="chart">

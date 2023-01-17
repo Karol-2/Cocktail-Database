@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useLayoutEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
 import DrinkEditForm from "./components/DrinkEditForm/DrinkEditForm";
@@ -24,13 +24,18 @@ const App = () => {
   const [refreshData, setRefreshData] = useState(false);
   const renderAfterCalled = useRef(false);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/drinks`)
-      .then((response) => response.json())
-      .catch((error) => console.error(error))
-      .then((data) => SetDrinkBase(data));
-
-    renderAfterCalled.current = true;
+  useLayoutEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/drinks`);
+        const data = await response.json();
+        SetDrinkBase(data);
+        renderAfterCalled.current = true;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [refreshData]);
 
   return (
