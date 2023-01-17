@@ -24,15 +24,31 @@ function AddFromFile() {
 
     try {
       const responses = await Promise.all(requests);
-      console.log(responses);
-      setRefreshData(!refreshData);
-      alert("File's content added!");
+      let duplicateDrink = "";
+      responses.forEach((response) => {
+        if (response.status === 400) {
+          duplicateDrink = response.json().then((res) => res.drinkName);
+        }
+      });
+      if (duplicateDrink) {
+        alert(`One of drinks is already in the database`);
+      } else {
+        console.log(responses);
+        setRefreshData(!refreshData);
+        alert("File's content added!");
+      }
     } catch (error) {
       alert("Error:", error);
     }
   };
 
   const handleFileSelect = (e) => {
+    if (e.target.files[0].type !== "application/json") {
+      alert("File must be in JSON format");
+      setFileInput(null);
+      setFileContent("");
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (event) => {
       setFileContent(event.target.result);

@@ -15,7 +15,22 @@ function DrinkEditForm() {
         delete values[key];
       }
     });
-    console.log(`http://localhost:5000/drinks/update/${id}`);
+    if (values.strDrinkThumb && !values.strDrinkThumb.match(/^http/)) {
+      alert("Drink Thumbnail must be a valid url");
+      return;
+    }
+    const drinkExist = drinkbase.some(
+      (drink) => drink.strDrink === values.strDrink
+    );
+    if (values.strDrink && drinkExist) {
+      alert("Drink Name already exist in the database");
+      return;
+    }
+    if (values.strInstructions && !values.strInstructions.includes(".")) {
+      alert("Instructions must contain a dot");
+      return;
+    }
+
     fetch(`http://localhost:5000/drinks/update/${id}`, {
       method: "PUT",
       headers: {
