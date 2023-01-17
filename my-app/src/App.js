@@ -1,8 +1,13 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
+import DrinkEditForm from "./components/DrinkEditForm/DrinkEditForm";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
+import TableAdmin from "./components/TableAdmin/TableAdmin";
+import TableComments from "./components/TableComments/TableComments";
 import { DrinkContext } from "./ContexApi";
+import { RefreshDatabaseContext } from "./contexts/RefreshAPI";
 import AdminPanel from "./routes/AdminPanel/AdminPanel";
 import Database from "./routes/Database/Database";
 import DrinkDetails from "./routes/DrinkDetails/DrinkDetails";
@@ -10,12 +15,7 @@ import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
 import Stats from "./routes/Stats/Stats";
-import TableAdmin from "./components/TableAdmin/TableAdmin";
 import "./styles/app.scss";
-import TableComments from "./components/TableComments/TableComments";
-import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
-import DrinkEditForm from "./components/DrinkEditForm/DrinkEditForm";
-import { RefreshDatabaseContext } from "./contexts/RefreshAPI";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState(

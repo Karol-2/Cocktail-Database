@@ -48,7 +48,7 @@ function AddFromFile() {
       />
 
       <button className="btn btn-danger" onClick={handleClear}>
-        Add via file
+        Add from file
       </button>
     </div>
   );

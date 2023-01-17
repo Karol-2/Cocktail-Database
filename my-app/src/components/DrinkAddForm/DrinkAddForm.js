@@ -2,10 +2,14 @@ import React, { useState, useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import AddFromFile from "../AddFromFile.js/AddFromFile";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
+import { DrinkContext } from "../../ContexApi";
 
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
   const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
+  const drinknames = useContext(DrinkContext).map((drink) =>
+    drink.strDrink.toLowerCase()
+  );
 
   const handleSubmit = (values, formikBag) => {
     fetch("http://localhost:5000/drinks/add", {
@@ -25,10 +29,19 @@ function DrinkAddForm() {
   };
 
   const validate = (values) => {
+    const urlRegex =
+      /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
+    const dotRegex = /\./;
+
     const errors = {};
     if (!values.strDrink) {
       errors.strDrink = "Required";
     }
+    if (drinknames.includes(values.strDrink.toLowerCase())) {
+      errors.strDrink =
+        "There is already a drink with that name in the database!";
+    }
+
     if (!values.strCategory) {
       errors.strCategory = "Required";
     }
@@ -41,8 +54,14 @@ function DrinkAddForm() {
     if (!values.strInstructions) {
       errors.strInstructions = "Required";
     }
+    if (!dotRegex.test(values.strInstructions)) {
+      errors.strInstructions = "Use sentences with '.' ";
+    }
     if (!values.strDrinkThumb) {
       errors.strDrinkThumb = "Required";
+    }
+    if (!urlRegex.test(values.strDrinkThumb)) {
+      errors.strDrinkThumb = "Enter valid link";
     }
     if (!values.strIngredient1) {
       errors.strIngredient1 = "Required";
@@ -160,7 +179,9 @@ function DrinkAddForm() {
               ) : null}
             </div>
             <div className="form-group">
-              <label htmlFor="strDrinkThumb">Drink Thumbnail *</label>
+              <label htmlFor="strDrinkThumb">
+                Drink Thumbnail (link to photo) *
+              </label>
               <Field
                 name="strDrinkThumb"
                 type="text"

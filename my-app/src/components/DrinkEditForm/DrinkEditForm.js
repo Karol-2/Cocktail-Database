@@ -74,6 +74,7 @@ function DrinkEditForm() {
             <div className="form-group">
               <label htmlFor="strAlcoholic">Drink to edit</label>
               <Field name="_id" as="select" className="form-control">
+                <option value="">Select a drink</option>
                 {drinkbase.map((drink) => (
                   <option key={drink._id} value={drink._id}>
                     {drink.strDrink}

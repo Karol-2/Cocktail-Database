@@ -10,7 +10,6 @@ import GetIngredients from "./DrinkDetailsLogic";
 const DrinkDetails = () => {
   const { id } = useParams();
   const [comments, setComment] = useState([]);
-  const [refresh, setRefresh] = useState(false);
   const [added, setAdded] = useState(true);
   const [showComments, setShowComments] = useState(false);
   const drinkBase = useContext(DrinkContext);
