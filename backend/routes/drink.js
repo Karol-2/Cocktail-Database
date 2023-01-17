@@ -22,6 +22,21 @@ recordRoutes.route("/drinks").get(async (req, res) => {
   }
 });
 
+recordRoutes.route("/drink/:id").get(async (req, res) => {
+  let db_connect = dbo.getDb("coctail_database");
+  try {
+    const drink = await db_connect
+      .collection("drinks")
+      .findOne({ _id: ObjectId(req.params.id) });
+    res.send(drink);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      error: "An error occurred while fetching the drink from the database.",
+    });
+  }
+});
+
 recordRoutes.route("/drinks/add").post(async function (req, response) {
   let db_connect = dbo.getDb("coctail_database");
 
