@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import Comment from "../../components/Comment/Comment";
 import CommentForm from "../../components/CommentForm.js/CommentForm";
 import Stars from "../../components/Stars/Stars";
-import { DrinkContext } from "../../ContexApi";
+import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
 

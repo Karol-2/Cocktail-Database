@@ -6,7 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import TableAdmin from "./components/TableAdmin/TableAdmin";
 import TableComments from "./components/TableComments/TableComments";
-import { DrinkContext } from "./ContexApi";
+import { DrinkContext } from "./contexts/DrinkBaseAPI";
 import { RefreshDatabaseContext } from "./contexts/RefreshAPI";
 import AdminPanel from "./routes/AdminPanel/AdminPanel";
 import Database from "./routes/Database/Database";

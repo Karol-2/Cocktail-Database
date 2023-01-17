@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./TableAdmin.scss";
-import { DrinkContext } from "../../ContexApi";
+import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 const TableAdmin = (data) => {
   const drinkBase = useContext(DrinkContext);

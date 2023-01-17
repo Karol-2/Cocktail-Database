@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import SliderContent from "./SliderContent";
 import "./Slider.scss";
-import { DrinkContext } from "../../ContexApi";
+import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 
 function Slider() {
   const [index, setIndex] = useState(0);

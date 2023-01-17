@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import Drinkcard from "./../../components/Drinkcard/Drinkcard";
 import "./Database.scss";
-import { DrinkContext } from "../../ContexApi";
+import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Row from "react-bootstrap/Row";
 
