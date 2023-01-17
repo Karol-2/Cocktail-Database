@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
+import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -27,6 +28,7 @@ const reducer = (state, action) => {
 };
 
 const Stars = ({ averageRating, id, lastElement, setLastReview }) => {
+  const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
   const [rating, setRating] = useState(averageRating);
   const [state, dispatch] = useReducer(reducer, rating);
   const [isFirstClick, setClick] = useState(true);
@@ -36,6 +38,7 @@ const Stars = ({ averageRating, id, lastElement, setLastReview }) => {
       setLastReview(newRating);
       dispatch({ type: "FIRST_CLICK", rating: newRating, id: id });
       setClick(false);
+      setRefreshData(!refreshData);
     } else {
       setLastReview(newRating);
       dispatch({
@@ -44,6 +47,7 @@ const Stars = ({ averageRating, id, lastElement, setLastReview }) => {
         oldrating: lastElement,
         id: id,
       });
+      setRefreshData(!refreshData);
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
 import { useParams } from "react-router";
 import Comment from "../../components/Comment/Comment";
 import CommentForm from "../../components/CommentForm.js/CommentForm";
@@ -18,9 +18,8 @@ const DrinkDetails = () => {
   const [lastReview, setLastReview] = useState(
     currentDrink.Reviews.slice(-1)[0]
   );
-
   const average =
-    currentDrink.Reviews.map((el) => parseInt(el)).reduce(
+    currentDrink.Reviews.map((el) => parseFloat(el)).reduce(
       (acc, val) => acc + val,
       0
     ) / currentDrink.Reviews.length;
@@ -31,7 +30,7 @@ const DrinkDetails = () => {
       .catch((error) => console.error(error))
       .then((data) => setComment(data))
       .then(() => setShowComments(true));
-  }, [lastReview, added]);
+  }, [lastReview, added, id]);
 
   return (
     <div className="drink-details">
@@ -54,6 +53,7 @@ const DrinkDetails = () => {
             lastElement={lastReview}
             setLastReview={setLastReview}
           />
+          {average}
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (
