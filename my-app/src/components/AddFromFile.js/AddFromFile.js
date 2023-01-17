@@ -1,13 +1,18 @@
 import React, { useState, useContext } from "react";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
+import ValidateObject from "./ObjectsValidation";
 
 function AddFromFile() {
   const [fileContent, setFileContent] = useState("");
   const [fileInput, setFileInput] = useState(null);
   const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
-  const sendData = (data) => {
-    data.forEach((item) => {
+  const sendData = async (data) => {
+    if (!data.every(ValidateObject)) {
+      alert("Data is not valid");
+      return;
+    }
+    const requests = data.map((item) =>
       fetch("http://localhost:5000/drinks/add", {
         method: "POST",
         headers: {
@@ -15,12 +20,16 @@ function AddFromFile() {
         },
         body: JSON.stringify(item),
       })
-        .then((res) => res.json())
-        .then((response) => console.log(response))
-        .then(setRefreshData(!refreshData))
-        .catch((error) => alert("Error:", error));
-    });
-    alert("File's content added!");
+    );
+
+    try {
+      const responses = await Promise.all(requests);
+      console.log(responses);
+      setRefreshData(!refreshData);
+      alert("File's content added!");
+    } catch (error) {
+      alert("Error:", error);
+    }
   };
 
   const handleFileSelect = (e) => {
