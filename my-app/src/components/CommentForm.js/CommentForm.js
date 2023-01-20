@@ -20,9 +20,10 @@ const CommentForm = ({ drinkid, setAdded }) => {
       .then(() => {
         setAddedState(!added);
         setAdded(!added);
-      })
-
-      .catch((err) => console.log(err));
+      });
+    setTimeout(() => {
+      setMessage("");
+    }, 2000).catch((err) => console.log(err));
     resetForm({});
   };
   const validate = (values) => {
