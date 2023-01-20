@@ -6,10 +6,17 @@ import Stars from "../../components/Stars/Stars";
 import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import "./DrinkDetails.scss";
 import GetIngredients from "./DrinkDetailsLogic";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../../actions/fetchDataActions";
 
 const DrinkDetails = () => {
   const { id } = useParams();
-  const [comments, setComment] = useState([]);
+  const dispatch = useDispatch();
+  const {
+    isLoading,
+    data: comments,
+    error,
+  } = useSelector((state) => state.fetchData);
   const [added, setAdded] = useState(true);
   const [showComments, setShowComments] = useState(false);
   const drinkBase = useContext(DrinkContext);
@@ -28,18 +35,10 @@ const DrinkDetails = () => {
   }, [currentDrink.Reviews]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/comments/${id}`);
-        const data = await response.json();
-        setComment(data);
-        setShowComments(true);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [lastReview, added, id]);
+    dispatch(fetchData(`http://localhost:5000/comments/${id}`));
+
+    setShowComments(true);
+  }, [lastReview, added, id, dispatch]);
 
   return (
     <div className="drink-details">
