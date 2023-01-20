@@ -1,36 +1,38 @@
 import React, { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import { Link } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
+  const [message, setMessage] = useState("");
+  const [isDataValid, setIsDataValid] = useState(false);
+
   function submitData(data) {
     if (data.password === "admin" && data.username === "admin") {
       setIsDataValid(true);
-      alert("You are an admin!");
     } else {
-      alert("Bad data!");
+      setMessage("Bad data!");
     }
   }
-  const [isDataValid, setIsDataValid] = useState(false);
+
   return (
     <div className="LoginPage">
-      <div>
-        <h1>Login</h1>
-        <h4>Please enter our secret passes to access admin page,</h4>
-        <h5> (you will defenitely NOT find it in a footer section!) </h5>
-      </div>
-
-      <LoginForm submitData={(x) => submitData(x)} />
+      {!isDataValid && (
+        <div>
+          <h4>Please enter our secret passes to access admin page,</h4>
+          <h5> (you will defenitely NOT find it in a footer section!) </h5>
+          <div className="text-danger" style={{ textAlign: "center" }}>
+            <h1>{message}</h1>
+          </div>
+          <LoginForm submitData={(x) => submitData(x)} />
+        </div>
+      )}
       {isDataValid && (
         <div className="LoginPage">
-          <button
-            className="btn btn-info"
-            onClick={() =>
-              (window.location.href = "http://localhost:3000/admin")
-            }
-          >
+          <h1>You are clearly an admin, now you have access to admin panel</h1>
+          <Link to="/admin" className="btn btn-info">
             Go to Admin panel
-          </button>
+          </Link>
         </div>
       )}
     </div>

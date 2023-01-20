@@ -21,7 +21,7 @@ const Navbar = () => {
           Stats
         </CustomLink>
         <CustomLink to="/login" className="custom-link">
-          Login
+          Admin Panel
         </CustomLink>
       </ul>
     </nav>

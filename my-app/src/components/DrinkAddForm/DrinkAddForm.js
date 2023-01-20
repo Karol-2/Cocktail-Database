@@ -6,6 +6,7 @@ import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
+  const [message, setMessage] = useState("");
   const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
   const drinknames = useContext(DrinkContext).map((drink) =>
     drink.strDrink.toLowerCase()
@@ -21,10 +22,15 @@ function DrinkAddForm() {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .then(alert("Drink added"))
+      .then(setMessage("Drink added"))
       .then(() => formikBag.resetForm())
       .then(setSend(() => !send))
       .then(setRefreshData(!refreshData))
+      .then(
+        setTimeout(() => {
+          setMessage("");
+        }, 2000)
+      )
       .catch((err) => console.log(err));
   };
 
@@ -48,6 +54,9 @@ function DrinkAddForm() {
     if (!values.strAlcoholic) {
       errors.strAlcoholic = "Required";
     }
+    if (values.strAlcoholic === "SELECT") {
+      errors.strAlcoholic = "Select drink type";
+    }
     if (!values.strGlass) {
       errors.strGlass = "Required";
     }
@@ -56,6 +65,9 @@ function DrinkAddForm() {
     }
     if (!dotRegex.test(values.strInstructions)) {
       errors.strInstructions = "Use sentences with '.' ";
+    }
+    if (values.strInstructions.lenght < 10) {
+      errors.strInstructions = "At least 10 characters";
     }
     if (!values.strDrinkThumb) {
       errors.strDrinkThumb = "Required";
@@ -144,6 +156,7 @@ function DrinkAddForm() {
                 className="form-control"
                 required
               >
+                <option vaule="SELECT">SELECT</option>
                 <option value="Alcoholic">Alcoholic</option>
                 <option value="Non alcoholic">Non alcoholic</option>
                 <option value="Optional alcohol">Optional alcohol</option>
@@ -338,11 +351,14 @@ function DrinkAddForm() {
             </div>
 
             <button type="submit" className="btn btn-primary">
-              Submit
+              Add
             </button>
           </Form>
         )}
       </Formik>
+      <div className="text-success">
+        <h1>{message}</h1>
+      </div>
     </div>
   );
 }

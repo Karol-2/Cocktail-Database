@@ -5,6 +5,7 @@ import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 
 function DrinkEditForm() {
   const drinkbase = useContext(DrinkContext);
+  const [message, setMessage] = useState("");
   const [send, setSend] = useState(false);
   const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
 
@@ -15,21 +16,6 @@ function DrinkEditForm() {
         delete values[key];
       }
     });
-    if (values.strDrinkThumb && !values.strDrinkThumb.match(/^http/)) {
-      alert("Drink Thumbnail must be a valid url");
-      return;
-    }
-    const drinkExist = drinkbase.some(
-      (drink) => drink.strDrink === values.strDrink
-    );
-    if (values.strDrink && drinkExist) {
-      alert("Drink Name already exist in the database");
-      return;
-    }
-    if (values.strInstructions && !values.strInstructions.includes(".")) {
-      alert("Instructions must contain a dot");
-      return;
-    }
 
     fetch(`http://localhost:5000/drinks/update/${id}`, {
       method: "PUT",
@@ -39,11 +25,41 @@ function DrinkEditForm() {
       body: JSON.stringify(values),
     })
       .then((res) => res.json())
-      .then(() => alert("Success!"))
+      .then(setMessage("Drink edited"))
       .then(setSend(() => !send))
       .then(resetForm())
       .then(setRefreshData(!refreshData))
+      .then(
+        setTimeout(() => {
+          setMessage("");
+        }, 2000)
+      )
       .catch((err) => console.log(err));
+  };
+  const validate = (values) => {
+    const urlRegex =
+      /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
+    const dotRegex = /\./;
+    const drinkExist = drinkbase.some(
+      (drink) => drink.strDrink === values.strDrink
+    );
+
+    const errors = {};
+
+    if (values.strDrink && drinkExist) {
+      errors.strDrink =
+        "There is already a drink with that name in the database!";
+    }
+
+    if (values.strInstructions && !dotRegex.test(values.strInstructions)) {
+      errors.strInstructions = "Use sentences with '.' ";
+    }
+
+    if (values.strDrinkThumb && !urlRegex.test(values.strDrinkThumb)) {
+      errors.strDrinkThumb = "Enter valid link";
+    }
+
+    return errors;
   };
 
   return (
@@ -51,6 +67,7 @@ function DrinkEditForm() {
       <h1>Edit a drink</h1>
       <h4>Write data only in places you want to change</h4>
       <Formik
+        validate={validate}
         initialValues={{
           _id: "",
           strDrink: "",
@@ -84,7 +101,7 @@ function DrinkEditForm() {
         }}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, errors }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="strAlcoholic">Drink to edit</label>
@@ -100,10 +117,16 @@ function DrinkEditForm() {
             <div className="form-group">
               <label htmlFor="strDrink">Drink Name </label>
               <Field name="strDrink" type="text" className="form-control" />
+              {errors.strDrink ? (
+                <div style={{ color: "red" }}>{errors.strDrink}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strCategory">Category </label>
               <Field name="strCategory" type="text" className="form-control" />
+              {errors.strCategory ? (
+                <div style={{ color: "red" }}>{errors.strCategory}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strAlcoholic">Alcoholic </label>
@@ -127,6 +150,9 @@ function DrinkEditForm() {
                 type="text"
                 className="form-control"
               />
+              {errors.strInstructions ? (
+                <div style={{ color: "red" }}>{errors.strInstructions}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strDrinkThumb">Drink Thumbnail </label>
@@ -135,6 +161,9 @@ function DrinkEditForm() {
                 type="text"
                 className="form-control"
               />
+              {errors.strDrinkThumb ? (
+                <div style={{ color: "red" }}>{errors.strDrinkThumb}</div>
+              ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient1">Ingredient 1</label>
@@ -275,6 +304,9 @@ function DrinkEditForm() {
           </Form>
         )}
       </Formik>
+      <div className="text-success">
+        <h1>{message}</h1>
+      </div>
     </div>
   );
 }

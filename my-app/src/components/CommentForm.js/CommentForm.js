@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import randomId from "../../helper/randomId";
 
 const CommentForm = ({ drinkid, setAdded }) => {
+  const [message, setMessage] = useState("");
   const [added, setAddedState] = useState(true);
   const handleSubmit = (values, { resetForm }) => {
     values.id = randomId();
@@ -15,7 +16,7 @@ const CommentForm = ({ drinkid, setAdded }) => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .then(() => alert("Success!"))
+      .then(() => setMessage("Success!"))
       .then(() => {
         setAddedState(!added);
         setAdded(!added);
@@ -51,6 +52,7 @@ const CommentForm = ({ drinkid, setAdded }) => {
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
+          <div className="text-success">{message}</div>
         </Form>
       )}
     </Formik>
