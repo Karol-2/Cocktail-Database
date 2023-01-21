@@ -1,10 +1,8 @@
-import React from "react";
-import { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
+import Row from "react-bootstrap/Row";
+import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import Drinkcard from "./../../components/Drinkcard/Drinkcard";
 import "./Database.scss";
-import { DrinkContext } from "../../contexts/DrinkBaseAPI";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Row from "react-bootstrap/Row";
 
 const Database = () => {
   const [searchTerm, SetSearchTerm] = useState("");

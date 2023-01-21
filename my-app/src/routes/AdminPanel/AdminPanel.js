@@ -28,7 +28,7 @@ const AdminPanel = () => {
         </button>
         <button className="btn btn-info">
           <Link to="/admin/admin-accounts" className="custom-link">
-            Admin accounts
+            ADMIN ACCOUNTS
           </Link>
         </button>
       </div>

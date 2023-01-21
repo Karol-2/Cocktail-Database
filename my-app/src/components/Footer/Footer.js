@@ -26,7 +26,7 @@ const Footer = () => {
           {showMessage && (
             <div ref={popup}>
               <ul>
-                <li>tel. 991-251-123</li>
+                <li>tel.+13 911-021-370</li>
                 <li>e-mail: contact@drinks.com</li>
               </ul>
             </div>

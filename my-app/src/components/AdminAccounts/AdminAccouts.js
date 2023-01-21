@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  login,
   addAccount,
-  getAllAccounts,
   deleteAccount,
+  getAllAccounts,
 } from "../../actions/adminActions";
-import { useSelector } from "react-redux";
 
 const AdminAccounts = () => {
   const [message, setMessage] = useState("");

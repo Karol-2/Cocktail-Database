@@ -31,8 +31,6 @@ function RegistrationForm(props) {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          // submitowanie danych tutaj
-          console.log(values);
           props.submitData(values);
           setSubmitting(false);
         }, 400);
