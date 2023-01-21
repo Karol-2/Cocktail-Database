@@ -44,12 +44,30 @@ const CommentForm = ({ drinkid, setAdded }) => {
     >
       {({ handleSubmit, errors, touched }) => (
         <Form onSubmit={handleSubmit}>
-          <Field name="name" type="text" placeholder="Username" />
-          {errors.name && touched.name ? <div>{errors.name}</div> : null}
-          <Field name="comment" type="text" placeholder="Your opinion..." />
-          {errors.comment && touched.comment ? (
-            <div>{errors.comment}</div>
-          ) : null}
+          <div className="form-group">
+            <label>Username:</label>
+            <Field
+              className="form-control"
+              name="name"
+              type="text"
+              placeholder="Username"
+            />
+            {errors.name && touched.name ? (
+              <div className="text-danger">{errors.name}</div>
+            ) : null}
+          </div>
+          <div className="form-group">
+            <label>Your opinion:</label>
+            <Field
+              className="form-control"
+              name="comment"
+              type="text"
+              placeholder="Your opinion..."
+            />
+            {errors.comment && touched.comment ? (
+              <div className="text-danger">{errors.comment}</div>
+            ) : null}
+          </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

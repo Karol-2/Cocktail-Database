@@ -20,13 +20,15 @@ const Footer = () => {
 
         <div className="e-mail">
           <button ref={button} onClick={() => SetShowMessage((prev) => !prev)}>
-            Click to get an admin page access
+            Click to get our contact info
           </button>
 
           {showMessage && (
             <div ref={popup}>
-              <p>username: admin</p>
-              <p>password:admin</p>{" "}
+              <ul>
+                <li>tel. 991-251-123</li>
+                <li>e-mail: contact@drinks.com</li>
+              </ul>
             </div>
           )}
         </div>

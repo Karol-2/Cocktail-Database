@@ -28,6 +28,10 @@ const DrinkDetails = () => {
   }, [currentDrink.Reviews]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:5000/comments/${id}`);
@@ -62,7 +66,7 @@ const DrinkDetails = () => {
             lastElement={lastReview}
             setLastReview={setLastReview}
           />
-          {average}
+
           <h2>Ingredients: </h2>
           <ul>
             {Ingredients.map((ingr, key) => (
@@ -86,7 +90,9 @@ const DrinkDetails = () => {
         </div>
       </div>
       <h3>Leave a comment!</h3>
-      <CommentForm drinkid={id} setAdded={setAdded} />
+      <div className="comment-form" style={{ maxWidth: 400 }}>
+        <CommentForm drinkid={id} setAdded={setAdded} />
+      </div>
       <div className="comments">
         <h2>Comments</h2>
 

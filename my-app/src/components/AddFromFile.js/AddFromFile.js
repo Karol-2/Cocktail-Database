@@ -70,7 +70,7 @@ function AddFromFile() {
 
   return (
     <div className="container">
-      <h4>You can add drink(s) via form or by putting json file here:</h4>
+      <h4>You can add drink(s) by putting json file here:</h4>
       <input
         type="file"
         onChange={handleFileSelect}

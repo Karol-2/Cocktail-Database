@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
@@ -8,6 +9,14 @@ function DrinkEditForm() {
   const [message, setMessage] = useState("");
   const [send, setSend] = useState(false);
   const { refreshData, setRefreshData } = useContext(RefreshDatabaseContext);
+
+  const [selectedDrink, setSelectedDrink] = useState({});
+  useEffect(() => {
+    if (!selectedDrink._id) return;
+    setSelectedDrink(
+      drinkbase.find((drink) => drink._id === selectedDrink._id)
+    );
+  }, [drinkbase, selectedDrink._id]);
 
   const handleSubmit = (values, { resetForm }) => {
     const id = values._id;
@@ -32,7 +41,7 @@ function DrinkEditForm() {
       .then(
         setTimeout(() => {
           setMessage("");
-        }, 2000)
+        }, 1000)
       )
       .catch((err) => console.log(err));
   };
@@ -66,6 +75,23 @@ function DrinkEditForm() {
     <div className="container">
       <h1>Edit a drink</h1>
       <h4>Write data only in places you want to change</h4>
+      <select
+        onChange={(e) => {
+          const selected = drinkbase.find(
+            (drink) => drink._id === e.target.value
+          );
+          setSelectedDrink(selected);
+        }}
+      >
+        <option value="" disabled selected>
+          Select a drink
+        </option>
+        {drinkbase.map((drink) => (
+          <option key={drink._id} value={drink._id}>
+            {drink.strDrink}
+          </option>
+        ))}
+      </select>
       <Formik
         validate={validate}
         initialValues={{
@@ -104,7 +130,9 @@ function DrinkEditForm() {
         {({ isSubmitting, errors }) => (
           <Form>
             <div className="form-group">
-              <label htmlFor="strAlcoholic">Drink to edit</label>
+              <label htmlFor="strAlcoholic">
+                <b>Drink to edit</b>
+              </label>
               <Field name="_id" as="select" className="form-control">
                 <option value="">Select a drink</option>
                 {drinkbase.map((drink) => (
@@ -138,7 +166,7 @@ function DrinkEditForm() {
               </Field>
             </div>
             <div className="form-group">
-              <label htmlFor="strGlass">Glass </label>
+              <label htmlFor="strGlass">Glass type</label>
               <Field name="strGlass" type="text" className="form-control" />
             </div>
             <div className="form-group">
@@ -149,6 +177,7 @@ function DrinkEditForm() {
                 name="strInstructions"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strInstructions}
               />
               {errors.strInstructions ? (
                 <div style={{ color: "red" }}>{errors.strInstructions}</div>

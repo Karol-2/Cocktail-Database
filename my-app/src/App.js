@@ -1,5 +1,8 @@
 import React, { useContext, useLayoutEffect, useRef, useState } from "react";
+import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import "./components/AdminAccounts/AdminAccouts";
+import AdminAccounts from "./components/AdminAccounts/AdminAccouts";
 import DrinkAddForm from "./components/DrinkAddForm/DrinkAddForm";
 import DrinkEditForm from "./components/DrinkEditForm/DrinkEditForm";
 import Footer from "./components/Footer/Footer";
@@ -15,9 +18,8 @@ import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
 import NotFound from "./routes/Notfound/Notfound";
 import Stats from "./routes/Stats/Stats";
-import "./styles/app.scss";
-import { Provider } from "react-redux";
 import store from "./store";
+import "./styles/app.scss";
 
 const App = () => {
   const [drinkBase, SetDrinkBase] = useState(
@@ -65,6 +67,10 @@ const App = () => {
                   <Route
                     path="/admin/database-edit"
                     element={<DrinkEditForm />}
+                  />
+                  <Route
+                    path="/admin/admin-accounts"
+                    element={<AdminAccounts />}
                   />
                 </Route>
                 <Route path="*" element={<NotFound />} />

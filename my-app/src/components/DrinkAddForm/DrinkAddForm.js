@@ -124,6 +124,7 @@ function DrinkAddForm() {
       >
         {({ errors, touched }) => (
           <Form>
+            <h4>Or you can use a form:</h4>
             <div className="form-group">
               <label htmlFor="strDrink">Drink Name *</label>
               <Field

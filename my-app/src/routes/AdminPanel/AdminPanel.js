@@ -26,6 +26,11 @@ const AdminPanel = () => {
             EDIT DRINK
           </Link>
         </button>
+        <button className="btn btn-info">
+          <Link to="/admin/admin-accounts" className="custom-link">
+            Admin accounts
+          </Link>
+        </button>
       </div>
       <Outlet />
     </div>
