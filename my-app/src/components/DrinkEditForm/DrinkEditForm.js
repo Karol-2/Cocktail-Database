@@ -19,14 +19,13 @@ function DrinkEditForm() {
   }, [drinkbase, selectedDrink._id]);
 
   const handleSubmit = (values, { resetForm }) => {
-    const id = values._id;
     Object.entries(values).forEach(([key, value]) => {
       if (!value) {
         delete values[key];
       }
     });
 
-    fetch(`http://localhost:5000/drinks/update/${id}`, {
+    fetch(`http://localhost:5000/drinks/update/${selectedDrink._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -130,35 +129,37 @@ function DrinkEditForm() {
         {({ isSubmitting, errors }) => (
           <Form>
             <div className="form-group">
-              <label htmlFor="strAlcoholic">
-                <b>Drink to edit</b>
-              </label>
-              <Field name="_id" as="select" className="form-control">
-                <option value="">Select a drink</option>
-                {drinkbase.map((drink) => (
-                  <option key={drink._id} value={drink._id}>
-                    {drink.strDrink}
-                  </option>
-                ))}
-              </Field>
-            </div>
-            <div className="form-group">
               <label htmlFor="strDrink">Drink Name </label>
-              <Field name="strDrink" type="text" className="form-control" />
+              <Field
+                name="strDrink"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strDrink}
+              />
               {errors.strDrink ? (
                 <div style={{ color: "red" }}>{errors.strDrink}</div>
               ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strCategory">Category </label>
-              <Field name="strCategory" type="text" className="form-control" />
+              <Field
+                name="strCategory"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strCategory}
+              />
               {errors.strCategory ? (
                 <div style={{ color: "red" }}>{errors.strCategory}</div>
               ) : null}
             </div>
             <div className="form-group">
               <label htmlFor="strAlcoholic">Alcoholic </label>
-              <Field name="strAlcoholic" as="select" className="form-control">
+              <Field
+                name="strAlcoholic"
+                as="select"
+                className="form-control"
+                placeholder={selectedDrink.strAlcoholic}
+              >
                 <option value=""></option>
                 <option value="Alcoholic">Alcoholic</option>
                 <option value="Non alcoholic">Non alcoholic</option>
@@ -167,7 +168,12 @@ function DrinkEditForm() {
             </div>
             <div className="form-group">
               <label htmlFor="strGlass">Glass type</label>
-              <Field name="strGlass" type="text" className="form-control" />
+              <Field
+                name="strGlass"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strGlass}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strInstructions">
@@ -189,6 +195,7 @@ function DrinkEditForm() {
                 name="strDrinkThumb"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strDrinkThumb}
               />
               {errors.strDrinkThumb ? (
                 <div style={{ color: "red" }}>{errors.strDrinkThumb}</div>
@@ -200,11 +207,17 @@ function DrinkEditForm() {
                 name="strIngredient1"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient1}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure1">Measure 1 </label>
-              <Field name="strMeasure1" type="text" className="form-control" />
+              <Field
+                name="strMeasure1"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure1}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient2">Ingredient 2</label>
@@ -212,11 +225,17 @@ function DrinkEditForm() {
                 name="strIngredient2"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient2}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure2">Measure 2</label>
-              <Field name="strMeasure2" type="text" className="form-control" />
+              <Field
+                name="strMeasure2"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure2}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient3">Ingredient 3</label>
@@ -224,11 +243,17 @@ function DrinkEditForm() {
                 name="strIngredient3"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient3}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure3">Measure 3</label>
-              <Field name="strMeasure3" type="text" className="form-control" />
+              <Field
+                name="strMeasure3"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure3}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient4">Ingredient 4</label>
@@ -236,11 +261,17 @@ function DrinkEditForm() {
                 name="strIngredient4"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient4}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure4">Measure 4</label>
-              <Field name="strMeasure4" type="text" className="form-control" />
+              <Field
+                name="strMeasure4"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure4}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient5">Ingredient 5</label>
@@ -248,11 +279,17 @@ function DrinkEditForm() {
                 name="strIngredient5"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient5}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure5">Measure 5</label>
-              <Field name="strMeasure5" type="text" className="form-control" />
+              <Field
+                name="strMeasure5"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure5}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient6">Ingredient 6</label>
@@ -260,11 +297,17 @@ function DrinkEditForm() {
                 name="strIngredient6"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient6}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure6">Measure 6</label>
-              <Field name="strMeasure6" type="text" className="form-control" />
+              <Field
+                name="strMeasure6"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure6}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient7">Ingredient 7</label>
@@ -272,11 +315,17 @@ function DrinkEditForm() {
                 name="strIngredient7"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient7}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure7">Measure 7</label>
-              <Field name="strMeasure7" type="text" className="form-control" />
+              <Field
+                name="strMeasure7"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure7}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient8">Ingredient 8</label>
@@ -284,11 +333,17 @@ function DrinkEditForm() {
                 name="strIngredient8"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient8}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure8">Measure 8</label>
-              <Field name="strMeasure8" type="text" className="form-control" />
+              <Field
+                name="strMeasure8"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure8}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient9">Ingredient 9</label>
@@ -296,11 +351,17 @@ function DrinkEditForm() {
                 name="strIngredient9"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient9}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure9">Measure 9</label>
-              <Field name="strMeasure9" type="text" className="form-control" />
+              <Field
+                name="strMeasure9"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure9}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient10">Ingredient 10</label>
@@ -308,11 +369,17 @@ function DrinkEditForm() {
                 name="strIngredient10"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient10}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure10">Measure 10</label>
-              <Field name="strMeasure10" type="text" className="form-control" />
+              <Field
+                name="strMeasure10"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure10}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="strIngredient11">Ingredient 11</label>
@@ -320,11 +387,17 @@ function DrinkEditForm() {
                 name="strIngredient11"
                 type="text"
                 className="form-control"
+                placeholder={selectedDrink.strIngredient11}
               />
             </div>
             <div className="form-group">
               <label htmlFor="strMeasure11">Measure 11</label>
-              <Field name="strMeasure11" type="text" className="form-control" />
+              <Field
+                name="strMeasure11"
+                type="text"
+                className="form-control"
+                placeholder={selectedDrink.strMeasure11}
+              />
             </div>
 
             <button type="submit" className="btn btn-primary">
