@@ -1,11 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import fetchDataReducer from "./reducers/fetchDataReducer";
+import adminReducer from "./reducers/adminReducer";
 
-const rootReducer = combineReducers({
-  fetchData: fetchDataReducer,
-});
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(adminReducer, applyMiddleware(thunk));
 
 export default store;

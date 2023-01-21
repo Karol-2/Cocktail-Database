@@ -2,15 +2,36 @@ import React, { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { Link } from "react-router-dom";
 import "./Login.scss";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login, getAllAccounts } from "../../actions/adminActions";
+import { useSelector } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [loginData, setLoginData] = useState({ login: "", password: "" });
   const [isDataValid, setIsDataValid] = useState(false);
 
+  const allAccounts = useSelector((state) => state.allAccounts);
+
+  useEffect(() => {
+    dispatch(getAllAccounts());
+  }, []);
+
   function submitData(data) {
-    if (data.password === "admin" && data.username === "admin") {
+    dispatch(getAllAccounts());
+
+    dispatch(login(loginData.login, loginData.password));
+    const isAccountInDb = allAccounts.some(
+      (account) =>
+        account.login === data.username && account.password === data.password
+    );
+    if (isAccountInDb) {
+      console.log("Account found in db.");
       setIsDataValid(true);
     } else {
+      console.log("Account not found in db.");
       setMessage("Bad data!");
     }
   }
