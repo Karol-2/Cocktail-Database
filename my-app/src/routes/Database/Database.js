@@ -6,7 +6,6 @@ import "./Database.scss";
 
 const Database = () => {
   const [searchTerm, SetSearchTerm] = useState("");
-
   const drinkBase = useContext(DrinkContext);
 
   return (

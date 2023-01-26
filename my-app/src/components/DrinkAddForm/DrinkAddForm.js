@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import AddFromFile from "../AddFromFile.js/AddFromFile";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
 import { DrinkContext } from "../../contexts/DrinkBaseAPI";
+import "../DrinkEditForm/DrinkEdit.scss";
 
 function DrinkAddForm() {
   const [send, setSend] = useState(false);
@@ -85,9 +86,9 @@ function DrinkAddForm() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="page">
       <div
-        className="page"
+        className="form"
         style={{
           maxWidth: "1000px",
         }}

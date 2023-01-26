@@ -18,28 +18,38 @@ const adminReducer = (state = initialState, action) => {
 
     case "ADD_ACCOUNT":
       const { newLogin, newPassword } = action.payload;
-      return {
-        ...state,
-        adminAccounts: [
-          ...state.adminAccounts,
-          { login: newLogin, password: newPassword },
-        ],
-      };
+      const alreadyExists = state.adminAccounts.some(
+        (account) => account.login === newLogin
+      );
+      if (alreadyExists) {
+        return {
+          ...state,
+          message: `Account with login ${newLogin} already exists.`,
+        };
+      } else {
+        return {
+          ...state,
+          adminAccounts: [
+            ...state.adminAccounts,
+            { login: newLogin, password: newPassword },
+          ],
+          message: `Successfully added account with login ${newLogin}.`,
+        };
+      }
 
     case "DELETE_ACCOUNT":
       const { loginToDelete } = action.payload;
       if (state.adminAccounts.length === 1) {
-        console.log("Cannot delete the last account.");
-        return state;
+        return { ...state, message: "Cannot delete the last account." };
       } else {
         return {
           ...state,
           adminAccounts: state.adminAccounts.filter(
             (account) => account.login !== loginToDelete
           ),
+          message: `Successfully deleted account with login ${loginToDelete}.`,
         };
       }
-
     case "GET_ALL_ACCOUNTS":
       return { ...state, allAccounts: [...state.adminAccounts] };
 

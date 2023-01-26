@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
+import "./DrinkEdit.scss";
 
 function DrinkEditForm() {
   const drinkbase = useContext(DrinkContext);
@@ -71,9 +72,9 @@ function DrinkEditForm() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="page">
       <div
-        className="page"
+        className="form"
         style={{
           maxWidth: "1000px",
         }}
@@ -160,12 +161,14 @@ function DrinkEditForm() {
                   ) : null}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="strAlcoholic">Alcoholic </label>
+                  <label htmlFor="strAlcoholic">
+                    Alcoholic type, previously: {selectedDrink.strAlcoholic}
+                  </label>
                   <Field
                     name="strAlcoholic"
                     as="select"
                     className="form-control"
-                    placeholder={selectedDrink.strAlcoholic}
+                    defaultValue={selectedDrink.strAlcoholic}
                   >
                     <option value=""></option>
                     <option value="Alcoholic">Alcoholic</option>

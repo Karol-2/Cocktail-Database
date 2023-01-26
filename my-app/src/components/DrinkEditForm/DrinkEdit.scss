@@ -1,0 +1,8 @@
+@import "./../../styles/variables";
+@import "./../../styles/functions";
+.form {
+  display: flex;
+  justify-content: center;
+  margin: 25px;
+  background-color: $primary;
+}

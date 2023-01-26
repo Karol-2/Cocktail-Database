@@ -1,0 +1,15 @@
+@import "./../../styles/variables";
+@import "./../../styles/functions";
+
+.page {
+  display: flex;
+  justify-content: center;
+
+  .panel {
+    @include basic_panel();
+
+    li {
+      @include user();
+    }
+  }
+}
