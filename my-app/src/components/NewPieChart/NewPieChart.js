@@ -9,22 +9,25 @@ function NewPieChart(props) {
   const [fullData, setFullData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dataReq = await fetch(
-          `http://localhost:5000/stats/${props.type}`
-        );
-        const dataRes = await dataReq.json();
-        const types = dataRes.map((data) => data.type);
-        const numbers = dataRes.map((data) => data.number);
-        setType(types);
-        setNumber(numbers);
-        setFullData(dataRes);
-      } catch (error) {
-        console.error("Error:", error);
-      }
+    const fetchData = () => {
+      return new Promise((resolve, reject) => {
+        fetch(`http://localhost:5000/stats/${props.type}`)
+          .then((response) => response.json())
+          .then((dataRes) => {
+            const types = dataRes.map((data) => data.type);
+            const numbers = dataRes.map((data) => data.number);
+            setType(types);
+            setNumber(numbers);
+            setFullData(dataRes);
+            resolve();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            reject(error);
+          });
+      });
     };
-    fetchData();
+    fetchData().then(() => console.log("Data fetched"));
   }, []);
 
   return (

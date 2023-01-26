@@ -13,26 +13,27 @@ function DrinkAddForm() {
     drink.strDrink.toLowerCase()
   );
 
-  const handleSubmit = (values, formikBag) => {
-    fetch("http://localhost:5000/drinks/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .then(setMessage("Drink added"))
-      .then(() => formikBag.resetForm())
-      .then(setSend(() => !send))
-      .then(setRefreshData(!refreshData))
-      .then(
-        setTimeout(() => {
-          setMessage("");
-        }, 2000)
-      )
-      .catch((err) => console.log(err));
+  const handleSubmit = async (values, formikBag) => {
+    try {
+      const res = await fetch("http://localhost:5000/drinks/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json();
+      console.log(data);
+      setMessage("Drink added");
+      formikBag.resetForm();
+      setSend(!send);
+      setRefreshData(!refreshData);
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const validate = (values) => {

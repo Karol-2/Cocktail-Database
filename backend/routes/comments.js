@@ -31,6 +31,7 @@ recordRoutes.route("/comments/:id").get(async function (req, res) {
     const obj = await db_connect
       .collection("drinks")
       .findOne(myquery, { projection: { Comments: 1, _id: 0 } });
+    obj.Comments.reverse();
     res.json(obj);
   } catch (err) {
     throw err;

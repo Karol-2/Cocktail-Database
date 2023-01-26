@@ -5,27 +5,31 @@ import randomId from "../../helper/randomId";
 const CommentForm = ({ drinkid, setAdded }) => {
   const [message, setMessage] = useState("");
   const [added, setAddedState] = useState(true);
-  const handleSubmit = (values, formikBag) => {
-    values.id = randomId();
-    fetch("http://localhost:5000/comment/add", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .then(() => setMessage("Success!"))
-      .then(() => {
-        setAddedState(!added);
-        setAdded(!added);
-      })
-      .then(() => formikBag.resetForm());
-    setTimeout(() => {
-      setMessage("");
-    }, 2000).catch((err) => console.log(err));
+
+  const handleSubmit = async (values, formikBag) => {
+    try {
+      values.id = randomId();
+      const res = await fetch("http://localhost:5000/comment/add", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json();
+      console.log(data);
+      setMessage("Success!");
+      setAddedState(!added);
+      setAdded(!added);
+      formikBag.resetForm();
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
@@ -36,6 +40,7 @@ const CommentForm = ({ drinkid, setAdded }) => {
     }
     return errors;
   };
+
   return (
     <Formik
       initialValues={{ name: "", comment: "", drinkId: drinkid }}
