@@ -1,6 +1,13 @@
+import {
+  faChartBar,
+  faDatabase,
+  faHome,
+  faSignInAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./Navbar.scss";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import "./Navbar.scss";
 
 const Navbar = () => {
   return (
@@ -12,16 +19,16 @@ const Navbar = () => {
       </p>
       <ul>
         <CustomLink to="/" className="custom-link">
-          Home
+          <FontAwesomeIcon icon={faHome} /> Home
         </CustomLink>
         <CustomLink to="/database" className="custom-link">
-          Database
+          <FontAwesomeIcon icon={faDatabase} /> Database
         </CustomLink>
         <CustomLink to="/stats" className="custom-link">
-          Stats
+          <FontAwesomeIcon icon={faChartBar} /> Stats
         </CustomLink>
         <CustomLink to="/login" className="custom-link">
-          Admin Panel
+          <FontAwesomeIcon icon={faSignInAlt} /> Admin Panel
         </CustomLink>
       </ul>
     </nav>

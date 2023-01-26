@@ -5,7 +5,7 @@ import randomId from "../../helper/randomId";
 const CommentForm = ({ drinkid, setAdded }) => {
   const [message, setMessage] = useState("");
   const [added, setAddedState] = useState(true);
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values, formikBag) => {
     values.id = randomId();
     fetch("http://localhost:5000/comment/add", {
       method: "PATCH",
@@ -20,11 +20,11 @@ const CommentForm = ({ drinkid, setAdded }) => {
       .then(() => {
         setAddedState(!added);
         setAdded(!added);
-      });
+      })
+      .then(() => formikBag.resetForm());
     setTimeout(() => {
       setMessage("");
     }, 2000).catch((err) => console.log(err));
-    resetForm({});
   };
   const validate = (values) => {
     const errors = {};

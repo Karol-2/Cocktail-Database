@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import "./TableAdmin.scss";
 import { DrinkContext } from "../../contexts/DrinkBaseAPI";
 import { RefreshDatabaseContext } from "../../contexts/RefreshAPI";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const TableAdmin = (data) => {
   const drinkBase = useContext(DrinkContext);
   const [tableContent, setTableContent] = useState(drinkBase);
@@ -45,7 +48,7 @@ const TableAdmin = (data) => {
                     onClick={() => handleDelete(item._id)}
                     className="btn btn-danger"
                   >
-                    Delete
+                    Delete <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>

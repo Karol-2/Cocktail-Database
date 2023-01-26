@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../TableAdmin/TableAdmin.scss";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TableComments = () => {
   const [tableContent, setTableContent] = useState([]);
@@ -59,7 +61,7 @@ const TableComments = () => {
                     onClick={() => handleDelete(item.Comments.id, item._id)}
                     className="btn btn-danger"
                   >
-                    Delete
+                    Delete <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>

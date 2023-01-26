@@ -152,6 +152,7 @@ function DrinkAddForm() {
                     className="form-control"
                     required
                   />
+
                   {errors.strCategory && touched.strCategory ? (
                     <div style={{ color: "red" }}>{errors.strCategory}</div>
                   ) : null}
