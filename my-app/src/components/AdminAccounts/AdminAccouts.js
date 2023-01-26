@@ -45,59 +45,66 @@ const AdminAccounts = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Add new admin account</h2>
-      <form className="form-group" onSubmit={handleAddAccount}>
-        <label>New Login:</label>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="New Login"
-          value={newAccountData.login}
-          onChange={(e) =>
-            setNewAccountData({ ...newAccountData, login: e.target.value })
-          }
-        />
-        <label>New Password:</label>
-        <input
-          className="form-control"
-          type="password"
-          placeholder="New Password"
-          value={newAccountData.password}
-          onChange={(e) =>
-            setNewAccountData({ ...newAccountData, password: e.target.value })
-          }
-        />
-        <div className="text-danger">{message}</div>
-        <button className="btn btn-primary" type="submit">
-          Add Account
-        </button>
-      </form>
+    <div
+      className="page"
+      style={{
+        maxWidth: "800px",
+      }}
+    >
+      <div className="container">
+        <h2>Add new admin account</h2>
+        <form className="form-group" onSubmit={handleAddAccount}>
+          <label>New Login:</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="New Login"
+            value={newAccountData.login}
+            onChange={(e) =>
+              setNewAccountData({ ...newAccountData, login: e.target.value })
+            }
+          />
+          <label>New Password:</label>
+          <input
+            className="form-control"
+            type="password"
+            placeholder="New Password"
+            value={newAccountData.password}
+            onChange={(e) =>
+              setNewAccountData({ ...newAccountData, password: e.target.value })
+            }
+          />
+          <div className="text-danger">{message}</div>
+          <button className="btn btn-primary" type="submit">
+            Add Account
+          </button>
+        </form>
 
-      <h2>Delete existing account</h2>
-      <form className="form-group" onSubmit={handleDeleteAccount}>
-        <label>Login to delete:</label>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Login to delete"
-          value={accountToDelete}
-          onChange={(e) => setAccountToDelete(e.target.value)}
-        />
-        <button className="btn btn-danger" type="submit">
-          Delete Account
-        </button>
-      </form>
-      <h2>All admin accounts</h2>
-      <ol>
-        {allAccounts &&
-          allAccounts.map((account, key) => (
-            <li key={key}>
-              <h5>login: {account.login}</h5>
-              <h6>password: {account.password}</h6>
-            </li>
-          ))}
-      </ol>
+        <h2>Delete existing account</h2>
+        <form className="form-group" onSubmit={handleDeleteAccount}>
+          <label>Login to delete:</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Login to delete"
+            value={accountToDelete}
+            onChange={(e) => setAccountToDelete(e.target.value)}
+          />
+          <button className="btn btn-danger" type="submit">
+            Delete Account
+          </button>
+        </form>
+        <h2>All admin accounts</h2>
+        <ol>
+          {allAccounts &&
+            allAccounts.map((account, key) => (
+              <li key={key}>
+                <h5>login: {account.login}</h5>
+                <h6>password: {account.password}</h6>
+              </li>
+            ))}
+        </ol>
+      </div>
     </div>
   );
 };

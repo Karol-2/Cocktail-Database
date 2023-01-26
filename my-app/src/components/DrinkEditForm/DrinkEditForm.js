@@ -71,343 +71,353 @@ function DrinkEditForm() {
   };
 
   return (
-    <div className="container">
-      <h1>Edit a drink</h1>
-      <h4>Write data only in places you want to change</h4>
-      <select
-        onChange={(e) => {
-          const selected = drinkbase.find(
-            (drink) => drink._id === e.target.value
-          );
-          setSelectedDrink(selected);
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        className="page"
+        style={{
+          maxWidth: "1000px",
         }}
       >
-        <option value="" disabled selected>
-          Select a drink
-        </option>
-        {drinkbase.map((drink) => (
-          <option key={drink._id} value={drink._id}>
-            {drink.strDrink}
-          </option>
-        ))}
-      </select>
-      <Formik
-        validate={validate}
-        initialValues={{
-          _id: "",
-          strDrink: "",
-          strCategory: "",
-          strAlcoholic: "",
-          strGlass: "",
-          strInstructions: "",
-          strDrinkThumb: "",
-          strIngredient1: "",
-          strIngredient2: "",
-          strIngredient3: "",
-          strIngredient4: "",
-          strIngredient5: "",
-          strIngredient6: "",
-          strIngredient7: "",
-          strIngredient8: "",
-          strIngredient9: "",
-          strIngredient10: "",
-          strIngredient11: "",
-          strMeasure1: "",
-          strMeasure2: "",
-          strMeasure3: "",
-          strMeasure4: "",
-          strMeasure5: "",
-          strMeasure6: "",
-          strMeasure7: "",
-          strMeasure8: "",
-          strMeasure9: "",
-          strMeasure10: "",
-          strMeasure11: "",
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting, errors }) => (
-          <Form>
-            <div className="form-group">
-              <label htmlFor="strDrink">Drink Name </label>
-              <Field
-                name="strDrink"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strDrink}
-              />
-              {errors.strDrink ? (
-                <div style={{ color: "red" }}>{errors.strDrink}</div>
-              ) : null}
-            </div>
-            <div className="form-group">
-              <label htmlFor="strCategory">Category </label>
-              <Field
-                name="strCategory"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strCategory}
-              />
-              {errors.strCategory ? (
-                <div style={{ color: "red" }}>{errors.strCategory}</div>
-              ) : null}
-            </div>
-            <div className="form-group">
-              <label htmlFor="strAlcoholic">Alcoholic </label>
-              <Field
-                name="strAlcoholic"
-                as="select"
-                className="form-control"
-                placeholder={selectedDrink.strAlcoholic}
-              >
-                <option value=""></option>
-                <option value="Alcoholic">Alcoholic</option>
-                <option value="Non alcoholic">Non alcoholic</option>
-                <option value="Optional alcohol">Optional alcohol</option>
-              </Field>
-            </div>
-            <div className="form-group">
-              <label htmlFor="strGlass">Glass type</label>
-              <Field
-                name="strGlass"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strGlass}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strInstructions">
-                Instructions (use complete sentences with periods!)
-              </label>
-              <Field
-                name="strInstructions"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strInstructions}
-              />
-              {errors.strInstructions ? (
-                <div style={{ color: "red" }}>{errors.strInstructions}</div>
-              ) : null}
-            </div>
-            <div className="form-group">
-              <label htmlFor="strDrinkThumb">Drink Thumbnail </label>
-              <Field
-                name="strDrinkThumb"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strDrinkThumb}
-              />
-              {errors.strDrinkThumb ? (
-                <div style={{ color: "red" }}>{errors.strDrinkThumb}</div>
-              ) : null}
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient1">Ingredient 1</label>
-              <Field
-                name="strIngredient1"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient1}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure1">Measure 1 </label>
-              <Field
-                name="strMeasure1"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure1}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient2">Ingredient 2</label>
-              <Field
-                name="strIngredient2"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient2}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure2">Measure 2</label>
-              <Field
-                name="strMeasure2"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure2}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient3">Ingredient 3</label>
-              <Field
-                name="strIngredient3"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient3}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure3">Measure 3</label>
-              <Field
-                name="strMeasure3"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure3}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient4">Ingredient 4</label>
-              <Field
-                name="strIngredient4"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient4}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure4">Measure 4</label>
-              <Field
-                name="strMeasure4"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure4}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient5">Ingredient 5</label>
-              <Field
-                name="strIngredient5"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient5}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure5">Measure 5</label>
-              <Field
-                name="strMeasure5"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure5}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient6">Ingredient 6</label>
-              <Field
-                name="strIngredient6"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient6}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure6">Measure 6</label>
-              <Field
-                name="strMeasure6"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure6}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient7">Ingredient 7</label>
-              <Field
-                name="strIngredient7"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient7}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure7">Measure 7</label>
-              <Field
-                name="strMeasure7"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure7}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient8">Ingredient 8</label>
-              <Field
-                name="strIngredient8"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient8}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure8">Measure 8</label>
-              <Field
-                name="strMeasure8"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure8}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient9">Ingredient 9</label>
-              <Field
-                name="strIngredient9"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient9}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure9">Measure 9</label>
-              <Field
-                name="strMeasure9"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure9}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient10">Ingredient 10</label>
-              <Field
-                name="strIngredient10"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient10}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure10">Measure 10</label>
-              <Field
-                name="strMeasure10"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure10}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strIngredient11">Ingredient 11</label>
-              <Field
-                name="strIngredient11"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strIngredient11}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="strMeasure11">Measure 11</label>
-              <Field
-                name="strMeasure11"
-                type="text"
-                className="form-control"
-                placeholder={selectedDrink.strMeasure11}
-              />
-            </div>
+        <div className="container">
+          <h1>Edit a drink</h1>
+          <h4>Write data only in places you want to change</h4>
+          <select
+            onChange={(e) => {
+              const selected = drinkbase.find(
+                (drink) => drink._id === e.target.value
+              );
+              setSelectedDrink(selected);
+            }}
+          >
+            <option value="" disabled selected>
+              Select a drink
+            </option>
+            {drinkbase.map((drink) => (
+              <option key={drink._id} value={drink._id}>
+                {drink.strDrink}
+              </option>
+            ))}
+          </select>
+          <Formik
+            validate={validate}
+            initialValues={{
+              _id: "",
+              strDrink: "",
+              strCategory: "",
+              strAlcoholic: "",
+              strGlass: "",
+              strInstructions: "",
+              strDrinkThumb: "",
+              strIngredient1: "",
+              strIngredient2: "",
+              strIngredient3: "",
+              strIngredient4: "",
+              strIngredient5: "",
+              strIngredient6: "",
+              strIngredient7: "",
+              strIngredient8: "",
+              strIngredient9: "",
+              strIngredient10: "",
+              strIngredient11: "",
+              strMeasure1: "",
+              strMeasure2: "",
+              strMeasure3: "",
+              strMeasure4: "",
+              strMeasure5: "",
+              strMeasure6: "",
+              strMeasure7: "",
+              strMeasure8: "",
+              strMeasure9: "",
+              strMeasure10: "",
+              strMeasure11: "",
+            }}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting, errors }) => (
+              <Form>
+                <div className="form-group">
+                  <label htmlFor="strDrink">Drink Name </label>
+                  <Field
+                    name="strDrink"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strDrink}
+                  />
+                  {errors.strDrink ? (
+                    <div style={{ color: "red" }}>{errors.strDrink}</div>
+                  ) : null}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strCategory">Category </label>
+                  <Field
+                    name="strCategory"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strCategory}
+                  />
+                  {errors.strCategory ? (
+                    <div style={{ color: "red" }}>{errors.strCategory}</div>
+                  ) : null}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strAlcoholic">Alcoholic </label>
+                  <Field
+                    name="strAlcoholic"
+                    as="select"
+                    className="form-control"
+                    placeholder={selectedDrink.strAlcoholic}
+                  >
+                    <option value=""></option>
+                    <option value="Alcoholic">Alcoholic</option>
+                    <option value="Non alcoholic">Non alcoholic</option>
+                    <option value="Optional alcohol">Optional alcohol</option>
+                  </Field>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strGlass">Glass type</label>
+                  <Field
+                    name="strGlass"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strGlass}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strInstructions">
+                    Instructions (use complete sentences with periods!)
+                  </label>
+                  <Field
+                    name="strInstructions"
+                    component="textarea"
+                    rows="8"
+                    className="form-control"
+                    placeholder={selectedDrink.strInstructions}
+                  />
+                  {errors.strInstructions ? (
+                    <div style={{ color: "red" }}>{errors.strInstructions}</div>
+                  ) : null}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strDrinkThumb">Drink Thumbnail </label>
+                  <Field
+                    name="strDrinkThumb"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strDrinkThumb}
+                  />
+                  {errors.strDrinkThumb ? (
+                    <div style={{ color: "red" }}>{errors.strDrinkThumb}</div>
+                  ) : null}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient1">Ingredient 1</label>
+                  <Field
+                    name="strIngredient1"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient1}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure1">Measure 1 </label>
+                  <Field
+                    name="strMeasure1"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure1}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient2">Ingredient 2</label>
+                  <Field
+                    name="strIngredient2"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient2}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure2">Measure 2</label>
+                  <Field
+                    name="strMeasure2"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure2}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient3">Ingredient 3</label>
+                  <Field
+                    name="strIngredient3"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient3}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure3">Measure 3</label>
+                  <Field
+                    name="strMeasure3"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure3}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient4">Ingredient 4</label>
+                  <Field
+                    name="strIngredient4"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient4}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure4">Measure 4</label>
+                  <Field
+                    name="strMeasure4"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure4}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient5">Ingredient 5</label>
+                  <Field
+                    name="strIngredient5"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient5}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure5">Measure 5</label>
+                  <Field
+                    name="strMeasure5"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure5}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient6">Ingredient 6</label>
+                  <Field
+                    name="strIngredient6"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient6}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure6">Measure 6</label>
+                  <Field
+                    name="strMeasure6"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure6}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient7">Ingredient 7</label>
+                  <Field
+                    name="strIngredient7"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient7}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure7">Measure 7</label>
+                  <Field
+                    name="strMeasure7"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure7}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient8">Ingredient 8</label>
+                  <Field
+                    name="strIngredient8"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient8}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure8">Measure 8</label>
+                  <Field
+                    name="strMeasure8"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure8}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient9">Ingredient 9</label>
+                  <Field
+                    name="strIngredient9"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient9}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure9">Measure 9</label>
+                  <Field
+                    name="strMeasure9"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure9}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient10">Ingredient 10</label>
+                  <Field
+                    name="strIngredient10"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient10}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure10">Measure 10</label>
+                  <Field
+                    name="strMeasure10"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure10}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strIngredient11">Ingredient 11</label>
+                  <Field
+                    name="strIngredient11"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strIngredient11}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="strMeasure11">Measure 11</label>
+                  <Field
+                    name="strMeasure11"
+                    type="text"
+                    className="form-control"
+                    placeholder={selectedDrink.strMeasure11}
+                  />
+                </div>
 
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-      <div className="text-success">
-        <h1>{message}</h1>
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+          <div className="text-success">
+            <h1>{message}</h1>
+          </div>
+        </div>
       </div>
     </div>
   );
