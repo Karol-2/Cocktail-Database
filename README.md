@@ -31,6 +31,6 @@ npm install</code></pre>
     <li>Open the application in your browser at http://localhost:3000.</li>
   </ol>
   <h2>Credits</h2>
-  <p>Cocktail was created by Karol Krawczykiewicz.
+  <p>Cocktail Database was created by Karol Krawczykiewicz.
   <h2>License</h2>
   <p>This project is licensed under the MIT License.</p>
