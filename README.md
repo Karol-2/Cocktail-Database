@@ -7,27 +7,26 @@
     <li>Leave comments on drink pages</li>
     <li>Rate drinks using a 5-star rating system</li>
     <li>Admin panel for managing drinks, comments, and user accounts</li>
-    <li>Secure authentication and authorization using JWT tokens</li>
   </ul>
   <h2>Installation</h2>
   <ol>
     <li>Clone this repository to your local machine:</li>
   </ol>
-  <pre><code>git clone https://github.com/your-username/drink-explorer.git</code></pre>
+  <pre><code>git clone https://github.com/Karol-2/Cocktail-Database.git</code></pre>
   <ol start="2">
     <li>Install the required dependencies:</li>
   </ol>
-  <pre><code>cd drink-explorer
+  <pre><code>cd my-app
 npm install</code></pre>
-  <ol start="3">
-    <li>Create a .env file in the root directory of the project and set the following environment variables:</li>
+   <ol start="3">
+    <li>Install the required dependencies for backend:</li>
   </ol>
-  <pre><code>MONGODB_URI=mongodb://localhost:27017/drink-explorer
-JWT_SECRET=mysecretkey</code></pre>
+  <pre><code>cd backend
+npm install</code></pre>
   <ol start="4">
     <li>Start the development server:</li>
   </ol>
-  <pre><code>npm run dev</code></pre>
+  <pre><code>npm run dev / npm start</code></pre>
   <ol start="5">
     <li>Open the application in your browser at http://localhost:3000.</li>
   </ol>
