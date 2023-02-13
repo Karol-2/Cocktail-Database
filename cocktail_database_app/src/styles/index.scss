@@ -1,0 +1,10 @@
+@import "./variables";
+
+div {
+  background-color: $secondary;
+}
+body {
+  margin: 0ch;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  min-height: 100vh;
+}
