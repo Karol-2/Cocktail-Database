@@ -1,5 +1,7 @@
 const { MongoClient } = require("mongodb");
-const Db = process.env.MONGO_URI;
+const Db = process.env.MONGO_URI;  // DOCKER
+//const Db = "mongodb://localhost:27017/posts_database" // TESTING
+
 
 console.log(Db);
 

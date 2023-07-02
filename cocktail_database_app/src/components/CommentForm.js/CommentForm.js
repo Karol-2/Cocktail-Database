@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import randomId from "../../helper/randomId";
+import randomId from "../../helpers/randomId";
 
 const CommentForm = ({ drinkid, setAdded }) => {
   const [message, setMessage] = useState("");
